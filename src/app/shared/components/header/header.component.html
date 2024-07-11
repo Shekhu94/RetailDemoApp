@@ -1,0 +1,92 @@
+<mat-sidenav-container class="pages-container">
+  <mat-sidenav
+    [opened]="false"
+    mode="over"
+    #sidenav
+    class="sidenav mat-elevation-z6"
+  >
+    <button
+      mat-icon-button
+      color="warn"
+      class="close"
+      (click)="sidenav.close()"
+    >
+      <mat-icon color="warn">close</mat-icon>
+    </button>
+    <div class="divider"></div>
+    <app-sidenav-menu
+      [menuItems]="sidenavMenuItems"
+      [menuParentId]="0"
+    ></app-sidenav-menu>
+  </mat-sidenav>
+  <mat-toolbar>
+    <mat-toolbar-row class="logo-toolbar">
+      <span>
+        <button mat-button (click)="sidenav.toggle()" class="sidenav-toggle">
+          <mat-icon class="mat-icon-md mr-0">menu</mat-icon>
+        </button>
+      </span>
+      <div class="company-logo">
+        <a class="logo" routerLink="/">y Company</a>
+      </div>
+      <div class="company-search">
+        <form method="get" class="search-form">
+          <input
+            type="text"
+            placeholder="Type to search..."
+            class="search-text"
+          />
+          <button
+            mat-mini-fab
+            type="button"
+            class="search-btn mat-elevation-z0"
+          >
+            <mat-icon>search</mat-icon>
+          </button>
+        </form>
+      </div>
+      <div class="cart-icon">
+        <div [@.disabled]="true">
+          {{ displayName }}
+          <button mat-button [matMenuTriggerFor]="userLogin">
+            <mat-icon
+              class="mat-icon-lg"
+              matBadgeColor="warn"
+              aria-hidden="false"
+              >person</mat-icon
+            >
+          </button>
+          <button mat-button>
+            <mat-icon
+              class="mat-icon-lg"
+              matBadgeColor="warn"
+              aria-hidden="false"
+              >shopping_cart</mat-icon
+            >
+          </button>
+
+          <mat-menu #userLogin="matMenu">
+            <ng-template matMenuContent>
+              <div class="login-menu">
+                <ng-template #elseBlock>
+                  <button mat-flat-button (click)="triggerLoginFlow('')">
+                    Login
+                  </button>
+                  <button mat-flat-button>Register</button>
+                </ng-template>
+                <button
+                  *ngIf="isSignedIn; else elseBlock"
+                  mat-flat-button
+                  (click)="triggerLogoutFlow('')"
+                >
+                  Logout
+                </button>
+              </div>
+            </ng-template>
+          </mat-menu>
+        </div>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</mat-sidenav-container>
+<app-menu></app-menu>

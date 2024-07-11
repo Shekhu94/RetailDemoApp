@@ -1,0 +1,114 @@
+@import "../../../styles/mixins";
+
+.logo-toolbar {
+    justify-content: space-between;
+}
+
+.company-logo {
+    box-sizing: border-box;
+    max-width: 20%;
+}
+
+.company-search {
+    box-sizing: border-box;
+    flex-grow: 1;
+    padding-left: 10%;
+}
+
+.search-form {
+    border-radius: 22px;
+    overflow: hidden;
+    flex-direction: row;
+    box-sizing: border-box;
+    display: flex;
+
+    input[type=text] {
+        border: 0;
+        outline: none;
+        padding: 0 34px 0 12px;
+        border-left: 1px solid #ccc;
+    }
+
+    .search-btn {
+        margin-left: -20px;
+        background: #fff !important;
+        box-shadow: none !important;
+        color: black;
+        border-radius: 25px;
+    }
+}
+
+.search-text {
+    width: 70%;
+}
+
+.login-menu {
+    vertical-align: middle;
+    margin-right: 8px;
+    @include flex-container(column);
+    gap:20px;
+    padding-left: 6px;
+}
+
+.mat-flat-button {
+    border-radius: 0px;
+}
+
+.login-menu button {
+    background-color: white;
+}
+
+.sidenav {
+    width: 250px;
+    padding: 8px 16px;
+    position: fixed;
+
+    .close {
+        margin-left: 178px;
+    }
+
+    .divider {
+        margin: 8px 0;
+    }
+}
+
+
+
+@media screen and (min-width: 960px) {
+    .sidenav-toggle {
+        display: none;
+    }
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) and (max-width: 767px) {
+    .top-toolbar.mat-toolbar-row {
+        padding: 0;
+
+        .top-menu {
+            margin-right: 0;
+        }
+
+        .sidenav-toggle {
+            min-width: 52px;
+            display: block;
+        }
+    }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) and (max-width: 991px) {
+    .top-toolbar.mat-toolbar-row {
+        padding: 0;
+
+        .top-menu {
+            margin-right: 0;
+        }
+
+        .sidenav-toggle {
+            min-width: 52px;
+            display: block;
+        }
+    }
+
+}

@@ -1,0 +1,18 @@
+@import "../../../styles/mixins";
+
+mat-toolbar {
+    background-color: white;
+}
+
+.app-menu {
+
+    @include flex-container(row);
+    justify-content: space-evenly;
+    width: 100%;
+
+    button {
+        color: black;
+        width: 100%;
+    }
+}
+
