@@ -37,6 +37,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { NgxsModule } from '@ngxs/store';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { ProfileState } from './store/profile/profile.state';
+import { ProductListState } from './store/products/products.state';
 export function loggerCallback(logLevel: LogLevel, message: string) {
   console.log(message);
 }
@@ -95,7 +96,7 @@ export const appConfig: ApplicationConfig = {
     // MSAL based DI configurations
     provideHttpClient(withInterceptorsFromDi(), withFetch()),
     importProvidersFrom(
-      NgxsModule.forRoot([ProfileState], {
+      NgxsModule.forRoot([ProfileState, ProductListState], {
         developmentMode: !environment.production,
       })
     ),

@@ -6,20 +6,22 @@ import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { FormsModule } from '@angular/forms';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { SidenavMenuComponent } from '../sidenav-menu/sidenav-menu.component';
 import { MenuComponent } from '../menu/menu.component';
 import { Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
+import { debounceTime, distinctUntilChanged, Observable } from 'rxjs';
 import { ProfileState } from '../../../store/profile/profile.state';
 import { ProfileStateModel } from '../../../store/profile/profile.model';
 import { CommonModule } from '@angular/common';
+import { GetProductListonSearch } from '../../../store/products/products.action';
 
 @Component({
   selector: 'app-header',
   standalone: true,
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     MatToolbarModule,
     MatFormFieldModule,
     MatInputModule,
@@ -28,7 +30,6 @@ import { CommonModule } from '@angular/common';
     MatButtonModule,
     MatSidenavModule,
     MatMenuModule,
-    FormsModule,
     SidenavMenuComponent,
     MenuComponent,
   ],
@@ -46,6 +47,20 @@ export class HeaderComponent {
   userProfileInfo$: Observable<ProfileStateModel> = this.store.select(
     ProfileState.getProfileInfo
   );
+  searchControl!: FormControl;
+
+  constructor() {
+    this.searchControl = new FormControl();
+    this.searchControl.valueChanges
+      .pipe(
+        debounceTime(300), // Wait for 300ms pause in typing
+        distinctUntilChanged() // Only emit if the value has changed
+      )
+      .subscribe((searchValue) => {
+        console.log('Search term:', searchValue);
+        this.store.dispatch(new GetProductListonSearch(searchValue));
+      });
+  }
 
   ngOnInit() {
     this.sidenavMenuItems = [];

@@ -8,7 +8,7 @@ export const environment = {
     },
   },
   apiConfig: {
-    scopes: ['user.read'],
+    scopes: ['openid'],
     uri: 'https://graph.microsoft.com/v1.0/me',
   },
 };

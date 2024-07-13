@@ -100,12 +100,15 @@ export class AppComponent {
       .subscribe(() => {
         this.setLoginDisplay();
         this.checkAndSetActiveAccount();
-        this.getProfile();
       });
   }
 
   setLoginDisplay() {
-    this.loginDisplay = this.authService.instance.getAllAccounts().length > 0;
+    let accounts = this.authService.instance.getAllAccounts()[0];
+    let profileInfo = new ProfileStateModel();
+    profileInfo.displayName = accounts ? accounts.name : '';
+    profileInfo.isSignedIn = accounts ? true : false;
+    this.store.dispatch(new AddProfile(profileInfo));
   }
 
   checkAndSetActiveAccount() {

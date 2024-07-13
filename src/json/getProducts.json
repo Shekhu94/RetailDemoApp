@@ -1,0 +1,110 @@
+{
+  "data": [
+    {
+      "categories": [
+        {
+          "id": "12345",
+          "name": "Laptops"
+        }
+      ],
+      "created_at": "2020-09-30T07:43:32.000Z",
+      "description": "Powerful and portable, the MacBook Pro is perfect for professionals and creatives.",
+      "id": "12345",
+      "images": [
+        {
+          "url": "https://example.com/macbook-pro.jpg"
+        }
+      ],
+      "inventory_quantity": "10",
+      "name": "MacBook Pro",
+      "options": [
+        {
+          "id": "1",
+          "name": "Color",
+          "values": ["Red"]
+        }
+      ],
+      "price": "1999.99",
+      "sku": "MBP123",
+      "status": "active",
+      "tags": ["Apple"],
+      "variants": [
+        {
+          "id": "1",
+          "images": [
+            {
+              "id": "12345",
+              "url": "https://example.com/macbook-pro.jpg"
+            }
+          ],
+          "inventory_quantity": "5",
+          "name": "Midnight 16inch MacBook Pro",
+          "options": [
+            {
+              "id": "1",
+              "name": "Color",
+              "value": "Silver"
+            }
+          ],
+          "price": "1999.99",
+          "sku": "MBP123-16GB-SILVER-13",
+          "weight": "1.25",
+          "weight_unit": "lb"
+        }
+      ]
+    },
+    {
+      "categories": [
+        {
+          "id": "2",
+          "name": "Laptops"
+        }
+      ],
+      "created_at": "2020-09-30T07:43:32.000Z",
+      "description": "Powerful and portable, the Legion is perfect for professionals and creatives.",
+      "id": "2",
+      "images": [
+        {
+          "url": "https://example.com/macbook-pro.jpg"
+        }
+      ],
+      "inventory_quantity": "10",
+      "name": "Lenovo",
+      "options": [
+        {
+          "id": "1",
+          "name": "Color",
+          "values": ["Red"]
+        }
+      ],
+      "price": "1999.99",
+      "sku": "MBP123",
+      "status": "active",
+      "tags": ["Lenovo"],
+      "variants": [
+        {
+          "id": "1",
+          "images": [
+            {
+              "id": "12345",
+              "url": "https://example.com/macbook-pro.jpg"
+            }
+          ],
+          "inventory_quantity": "5",
+          "name": "Midnight 16inch Legion",
+          "options": [
+            {
+              "id": "1",
+              "name": "Color",
+              "value": "Silver"
+            }
+          ],
+          "price": "1999.99",
+          "sku": "MBP123-16GB-SILVER-13",
+          "weight": "1.25",
+          "weight_unit": "lb"
+        }
+      ]
+    }
+  ]
+}

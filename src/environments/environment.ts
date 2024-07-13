@@ -14,6 +14,9 @@ export const environment = {
     scopes: ['ENTER_SCOPE'],
     uri: 'ENTER_URI',
   },
+  productApiUrls: {
+    getProductsApiUrl: '',
+  },
 };
 
 /*

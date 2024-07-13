@@ -30,11 +30,12 @@
         <a class="logo" routerLink="/">y Company</a>
       </div>
       <div class="company-search">
-        <form method="get" class="search-form">
+        <form class="search-form">
           <input
             type="text"
             placeholder="Type to search..."
             class="search-text"
+            [formControl]="searchControl"
           />
           <button
             mat-mini-fab

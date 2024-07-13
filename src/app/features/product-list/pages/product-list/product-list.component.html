@@ -5,7 +5,7 @@
 
 <div class="container">
   <div class="grid-row">
-    @for (product of productList; track $index) {
+    @for (product of productList$ | async; track $index) {
     <div class="grid-item">
       <div class="grid-item-wrapper">
         <div class="grid-item-container">
@@ -17,10 +17,7 @@
             />
             <mat-card-content>
               <p>
-                The Shiba Inu is the smallest of the six original and distinct
-                spitz breeds of dog from Japan. A small, agile dog that copes
-                very well with mountainous terrain, the Shiba Inu was originally
-                bred for hunting.
+                {{ product.description }}
               </p>
             </mat-card-content>
           </mat-card>
