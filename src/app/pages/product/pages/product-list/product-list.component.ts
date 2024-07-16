@@ -8,16 +8,24 @@ import { ProductListState } from '../../../../store/products/products.state';
 import { Observable } from 'rxjs';
 import { ProductListModel } from '../../../../store/products/products.model';
 import { AsyncPipe } from '@angular/common';
+import { Router, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [MatCardModule, MatButtonModule, OfferCarouselComponent, AsyncPipe],
+  imports: [
+    RouterOutlet,
+    MatCardModule,
+    MatButtonModule,
+    OfferCarouselComponent,
+    AsyncPipe,
+  ],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.scss',
 })
 export class ProductListComponent implements OnInit {
   public store = inject(Store);
+  private router = inject(Router);
 
   productList$: Observable<ProductListModel[]> = this.store.select(
     ProductListState.getProductList
@@ -25,5 +33,9 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(new GetProductList());
+  }
+
+  openDetailsPage(productid: string) {
+    this.router.navigate(['/details'], { queryParams: { id: productid } });
   }
 }

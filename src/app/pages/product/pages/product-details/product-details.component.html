@@ -1,0 +1,80 @@
+<div class="details-container">
+  <div class="left-panel">
+    <div class="gallery-container">
+      <div class="product-gallery__featured">
+        <owl-carousel-o [options]="mainCarouselOptions" #mainCarousel>
+          <ng-container *ngFor="let image of productImages">
+            <ng-template carouselSlide [id]="image.url" [dataMerge]="1">
+              <img [src]="image.url" />
+            </ng-template>
+          </ng-container>
+        </owl-carousel-o>
+      </div>
+
+      <div class="product-gallery__carousel">
+        <owl-carousel-o [options]="thumbnailCarouselOptions">
+          <ng-container *ngFor="let image of productImages; let i = index">
+            <ng-template carouselSlide [id]="image.url + i" [width]="80">
+              <a
+                (click)="mainCarousel.to(image.url); changeimage(image.url + i)"
+              >
+                <img
+                  [src]="image.url"
+                  [ngClass]="{
+                    'product-gallery__carousel-item--active':
+                      selectedImage === image.url + i ||
+                      (i == 0 && !selectedImage)
+                  }"
+                />
+              </a>
+            </ng-template>
+          </ng-container>
+        </owl-carousel-o>
+      </div>
+    </div>
+  </div>
+  <div class="right-panel">
+    <!-- Your content for the right panel -->
+    <div class="product-details">
+      <h6 class="description">Product description</h6>
+      <h6 class="mrp">MRP inclusive of all taxes</h6>
+      <div>
+        <span class="price">Rs. 539.00</span>
+        <span class="striked-price"><s>Rs. 1,799.00</s></span>
+      </div>
+      <div class="variants">
+        <div>
+          <mat-card> <mat-card-content> hello </mat-card-content></mat-card>
+          <mat-card> <mat-card-content> hello </mat-card-content></mat-card>
+          <mat-card> <mat-card-content> hello </mat-card-content></mat-card>
+          <mat-card> <mat-card-content> hello </mat-card-content></mat-card>
+        </div>
+      </div>
+      <div class="sizes">
+        <span>size</span>
+        <div>
+          <mat-card> <mat-card-content> hello </mat-card-content></mat-card>
+          <mat-card> <mat-card-content> hello </mat-card-content></mat-card>
+          <mat-card> <mat-card-content> hello </mat-card-content></mat-card>
+          <mat-card> <mat-card-content> hello </mat-card-content></mat-card>
+          <mat-card> <mat-card-content> hello </mat-card-content></mat-card>
+          <mat-card> <mat-card-content> hello </mat-card-content></mat-card>
+        </div>
+        <div class="addCart">
+          <button mat-flat-button>
+            <mat-icon
+              aria-hidden="false"
+              aria-label="Example shoppingcart icon"
+              fontIcon="shopping_cart"
+            ></mat-icon>
+            Add
+          </button>
+        </div>
+        <div>
+          <hr />
+        </div>
+        <app-product-accordion></app-product-accordion>
+      </div>
+    </div>
+  </div>
+</div>

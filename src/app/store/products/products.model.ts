@@ -21,13 +21,8 @@ export interface Variant {
   weight_unit: string;
 }
 
-export interface Category {
-  id: string;
-  name: string;
-}
-
 export interface ProductListModel {
-  categories: Category[];
+  category: string;
   created_at: string;
   description: string;
   id: string;
@@ -40,4 +35,9 @@ export interface ProductListModel {
   status: string;
   tags: string[];
   variants: Variant[];
+}
+
+export interface SearchCriteriaModel {
+  searchedText: string;
+  selectedMenu: string;
 }

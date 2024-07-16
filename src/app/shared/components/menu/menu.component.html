@@ -1,9 +1,9 @@
 <mat-toolbar>
   <div class="app-menu">
-    <button mat-button>Sale</button>
-    <button mat-button>Ladies</button>
-    <button mat-button>Men</button>
-    <button mat-button>Kids</button>
-    <button mat-button>Accessories</button>
+    @for(option of menuOptions; track $index) {
+    <button mat-button (click)="showRelatedProducts(option)">
+      {{ option }}
+    </button>
+    }
   </div>
 </mat-toolbar>

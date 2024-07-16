@@ -14,6 +14,7 @@ import { debounceTime, distinctUntilChanged, Observable } from 'rxjs';
 import { ProfileState } from '../../../store/profile/profile.state';
 import { ProfileStateModel } from '../../../store/profile/profile.model';
 import { CommonModule } from '@angular/common';
+import { SearchCriteriaModel } from '../../../store/products/products.model';
 import { GetProductListonSearch } from '../../../store/products/products.action';
 
 @Component({
@@ -48,7 +49,7 @@ export class HeaderComponent {
     ProfileState.getProfileInfo
   );
   searchControl!: FormControl;
-
+  searchedValue: SearchCriteriaModel = { searchedText: '', selectedMenu: '' };
   constructor() {
     this.searchControl = new FormControl();
     this.searchControl.valueChanges
@@ -58,7 +59,8 @@ export class HeaderComponent {
       )
       .subscribe((searchValue) => {
         console.log('Search term:', searchValue);
-        this.store.dispatch(new GetProductListonSearch(searchValue));
+        this.searchedValue.searchedText = searchValue;
+        this.store.dispatch(new GetProductListonSearch(this.searchedValue));
       });
   }
 

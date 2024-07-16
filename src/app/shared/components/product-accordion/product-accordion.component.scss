@@ -1,0 +1,8 @@
+@import '../../../styles/mixins';
+
+.product-accordion {
+    @include flex-container(row);
+    justify-content: space-between;
+    padding-top: 4%;
+}
+
