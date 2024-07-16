@@ -9,7 +9,15 @@ import { ProductListModel } from '../../store/products/products.model';
 export class ProductListService {
   constructor(private httpClient: HttpClient) {}
 
-  getProductList(menu?: string): Observable<ProductListModel[]> {
+  getProductList(): Observable<ProductListModel[]> {
+    return this.httpClient.get('http://localhost:3000/data').pipe(
+      map((payload) => {
+        return payload as ProductListModel[];
+      })
+    );
+  }
+
+  getProductDetails(id: string): Observable<ProductListModel[]> {
     return this.httpClient.get('http://localhost:3000/data').pipe(
       map((payload) => {
         return payload as ProductListModel[];

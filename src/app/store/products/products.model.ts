@@ -19,12 +19,15 @@ export interface Variant {
   sku: string;
   weight: string;
   weight_unit: string;
+  sizes: string[];
 }
 
 export interface ProductListModel {
   category: string;
   created_at: string;
   description: string;
+  material: string;
+  care: string;
   id: string;
   images: Image[];
   inventory_quantity: string;

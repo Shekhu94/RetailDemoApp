@@ -1,8 +1,14 @@
 @import '../../../styles/mixins';
 
-.product-accordion {
+.accordion-key {
     @include flex-container(row);
     justify-content: space-between;
     padding-top: 4%;
+    font-size: 1rem;
+    font-weight: 500;
 }
 
+.accordion-item-body{
+    font-size: small;
+    padding-top: 2%;
+}

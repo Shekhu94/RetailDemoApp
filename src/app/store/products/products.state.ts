@@ -3,6 +3,7 @@ import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { ProductListModel } from './products.model';
 import { ProductListService } from '../../pages/product/product-list.service';
 import {
+  GetProductDetails,
   GetProductList,
   GetProductListonMenu,
   GetProductListonSearch,
@@ -10,6 +11,7 @@ import {
 
 export class ProductListStateModel {
   productList: ProductListModel[] = [];
+  productDetails: ProductListModel[] = [];
   filteredProductList: ProductListModel[] = [];
   searchedText: string = '';
   selectedMenu: string = '';
@@ -19,6 +21,7 @@ export class ProductListStateModel {
   name: 'product',
   defaults: {
     productList: [],
+    productDetails: [],
     filteredProductList: [],
     searchedText: '',
     selectedMenu: '',
@@ -68,6 +71,22 @@ export class ProductListState {
     });
   }
 
+  // get the selected product details
+  @Action(GetProductDetails) GetProductDetails(
+    ctx: StateContext<ProductListStateModel>,
+    action: GetProductDetails
+  ) {
+    const state = ctx.getState();
+    this.productListService
+      .getProductDetails(action.id)
+      .subscribe((payload) => {
+        ctx.setState({
+          ...state,
+          productDetails: payload,
+        });
+      });
+  }
+
   //select the product list from state based on searched text
   @Selector()
   static getProductList(state: ProductListStateModel) {
@@ -83,5 +102,11 @@ export class ProductListState {
         return x.description.match(searchTextRegex);
       }
     });
+  }
+
+  //select the product list from state based on searched text
+  @Selector()
+  static getProductDetails(state: ProductListStateModel) {
+    return state.productDetails;
   }
 }

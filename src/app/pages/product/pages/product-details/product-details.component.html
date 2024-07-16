@@ -53,12 +53,11 @@
       <div class="sizes">
         <span>size</span>
         <div>
-          <mat-card> <mat-card-content> hello </mat-card-content></mat-card>
-          <mat-card> <mat-card-content> hello </mat-card-content></mat-card>
-          <mat-card> <mat-card-content> hello </mat-card-content></mat-card>
-          <mat-card> <mat-card-content> hello </mat-card-content></mat-card>
-          <mat-card> <mat-card-content> hello </mat-card-content></mat-card>
-          <mat-card> <mat-card-content> hello </mat-card-content></mat-card>
+          @for(size of ProductSizes; track size) {
+          <mat-card class="size">
+            <mat-card-content> {{ size }} </mat-card-content></mat-card
+          >
+          }
         </div>
         <div class="addCart">
           <button mat-flat-button>
@@ -73,7 +72,9 @@
         <div>
           <hr />
         </div>
-        <app-product-accordion></app-product-accordion>
+        <app-product-accordion
+          [AccordionData]="productAccordion"
+        ></app-product-accordion>
       </div>
     </div>
   </div>

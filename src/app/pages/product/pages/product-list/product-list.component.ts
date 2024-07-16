@@ -36,6 +36,6 @@ export class ProductListComponent implements OnInit {
   }
 
   openDetailsPage(productid: string) {
-    this.router.navigate(['/details'], { queryParams: { id: productid } });
+    this.router.navigate(['/details', productid]);
   }
 }

@@ -13,3 +13,8 @@ export class GetProductListonMenu {
   static readonly type = '[ProductList page] GetProductOnMenu';
   constructor(public payload: SearchCriteriaModel) {}
 }
+
+export class GetProductDetails {
+  static readonly type = '[ProductDetail page] GetProductDetails';
+  constructor(public id: string) {}
+}

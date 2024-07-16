@@ -4,6 +4,8 @@
       "category": "Ladies",
       "created_at": "2020-09-30T07:43:32.000Z",
       "description": "Powerful and portable, the MacBook Pro is perfect for professionals and creatives.",
+      "material": "Viscose 80%, Polyamide 20%",
+      "care": "You too can help the environment and make fashion more sustainable. Bring unwanted clothes or home textiles to any H&M store and they will be reworn, reused or recycled.",
       "id": "12345",
       "images": [
         {
@@ -44,7 +46,8 @@
           "price": "1999.99",
           "sku": "MBP123-16GB-SILVER-13",
           "weight": "1.25",
-          "weight_unit": "lb"
+          "weight_unit": "lb",
+          "sizes": ["S", "M", "L", "XL"]
         }
       ]
     },
@@ -52,6 +55,8 @@
       "category": "Men",
       "created_at": "2020-09-30T07:43:32.000Z",
       "description": "Powerful and portable, the Legion is perfect for professionals and creatives.",
+      "material": "Cotton 100%",
+      "care": "You too can help the environment and make fashion more sustainable. Bring unwanted clothes or home textiles to any H&M store and they will be reworn, reused or recycled.",
       "id": "2",
       "images": [
         {
@@ -92,7 +97,8 @@
           "price": "1999.99",
           "sku": "MBP123-16GB-SILVER-13",
           "weight": "1.25",
-          "weight_unit": "lb"
+          "weight_unit": "lb",
+          "sizes": ["S", "M", "L", "XL"]
         }
       ]
     }

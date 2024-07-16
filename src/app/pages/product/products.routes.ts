@@ -4,5 +4,9 @@ import { ProductDetailsComponent } from './pages/product-details/product-details
 
 export const routes: Routes = [
   { path: '', component: ProductListComponent, pathMatch: 'full' },
-  { path: 'details', component: ProductDetailsComponent, pathMatch: 'full' },
+  {
+    path: 'details/:id',
+    component: ProductDetailsComponent,
+    pathMatch: 'full',
+  },
 ];
