@@ -18,3 +18,8 @@ export class GetProductDetails {
   static readonly type = '[ProductDetail page] GetProductDetails';
   constructor(public id: string) {}
 }
+
+export class SetSelectedProduct {
+  static readonly type = '[ProductDetail page] SetSelectedProduct';
+  constructor(public id: number) {}
+}

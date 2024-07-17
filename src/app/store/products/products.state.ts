@@ -7,6 +7,7 @@ import {
   GetProductList,
   GetProductListonMenu,
   GetProductListonSearch,
+  SetSelectedProduct,
 } from './products.action';
 
 export class ProductListStateModel {
@@ -15,6 +16,7 @@ export class ProductListStateModel {
   filteredProductList: ProductListModel[] = [];
   searchedText: string = '';
   selectedMenu: string = '';
+  selectedProduct: number = 0;
 }
 
 @State<ProductListStateModel>({
@@ -25,6 +27,7 @@ export class ProductListStateModel {
     filteredProductList: [],
     searchedText: '',
     selectedMenu: '',
+    selectedProduct: 0,
   },
 })
 @Injectable()
@@ -85,6 +88,18 @@ export class ProductListState {
           productDetails: payload,
         });
       });
+  }
+
+  // set the selected product details
+  @Action(SetSelectedProduct) SetSelectedProduct(
+    ctx: StateContext<ProductListStateModel>,
+    action: SetSelectedProduct
+  ) {
+    const state = ctx.getState();
+    ctx.patchState({
+      ...state,
+      selectedProduct: action.id,
+    });
   }
 
   //select the product list from state based on searched text

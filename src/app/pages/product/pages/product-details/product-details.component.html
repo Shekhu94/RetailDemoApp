@@ -44,17 +44,29 @@
       </div>
       <div class="variants">
         <div>
-          <mat-card> <mat-card-content> hello </mat-card-content></mat-card>
-          <mat-card> <mat-card-content> hello </mat-card-content></mat-card>
-          <mat-card> <mat-card-content> hello </mat-card-content></mat-card>
-          <mat-card> <mat-card-content> hello </mat-card-content></mat-card>
+          @for(thumbnail of SelectedProductThumbnail; track $index; let i =
+          $index) {
+
+          <img
+            class="imageThumb"
+            src="{{ thumbnail.url }}"
+            width="100"
+            height="100"
+            [ngClass]="{ 'selected-image': i === selectedImageIndex }"
+            (click)="selectImage($index, thumbnail.id)"
+          />
+          }
         </div>
       </div>
       <div class="sizes">
         <span>size</span>
         <div>
-          @for(size of ProductSizes; track size) {
-          <mat-card class="size">
+          @for(size of SelectedProductSizes;track $index; let ind = $index) {
+          <mat-card
+            class="size"
+            [ngClass]="{ 'selected-size': ind === selectedSizeIndex }"
+            (click)="selectSize($index)"
+          >
             <mat-card-content> {{ size }} </mat-card-content></mat-card
           >
           }

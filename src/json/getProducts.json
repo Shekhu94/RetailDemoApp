@@ -29,8 +29,39 @@
         {
           "id": "1",
           "images": [
+            "https://example.com/macbook-pro.jpg",
+            "https://example.com/macbook-pro.jpg",
+            "https://example.com/macbook-pro.jpg"
+          ],
+          "inventory_quantity": "5",
+          "name": "Midnight 16inch MacBook Pro",
+          "price": "1999.99",
+          "sku": "MBP123-16GB-SILVER-13",
+          "weight": "1.25",
+          "weight_unit": "lb",
+          "options": [
             {
-              "id": "12345",
+              "id": "1s",
+              "size": "S"
+            },
+            {
+              "id": "1m",
+              "size": "M"
+            },
+            {
+              "id": "1l",
+              "size": "L"
+            },
+            {
+              "id": "1xl",
+              "size": "XL"
+            }
+          ]
+        },
+        {
+          "id": "2",
+          "images": [
+            {
               "url": "https://example.com/macbook-pro.jpg"
             }
           ],
@@ -47,7 +78,17 @@
           "sku": "MBP123-16GB-SILVER-13",
           "weight": "1.25",
           "weight_unit": "lb",
-          "sizes": ["S", "M", "L", "XL"]
+          "sizes": ["S", "M", "L"]
+        }
+      ],
+      "variants_thumbnail": [
+        {
+          "id": 1,
+          "url": "carousel/pic1.jpg"
+        },
+        {
+          "id": 2,
+          "url": "carousel/pic2.jpg"
         }
       ]
     },
@@ -99,6 +140,12 @@
           "weight": "1.25",
           "weight_unit": "lb",
           "sizes": ["S", "M", "L", "XL"]
+        }
+      ],
+      "variants_thumbnail": [
+        {
+          "id": 4,
+          "url": "https://example.com/macbook-pro.jpg"
         }
       ]
     }

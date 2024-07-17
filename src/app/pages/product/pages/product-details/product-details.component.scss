@@ -108,6 +108,17 @@
     cursor: pointer;
 }
 
+.imageThumb{
+    cursor: pointer;
+}
+
+.selected-image{
+    border: 1px solid;
+}
+
+.selected-size{
+    background-color: #9cd0f2;
+}
 
 @media screen and (max-width: 990px) {
     .details-container {
