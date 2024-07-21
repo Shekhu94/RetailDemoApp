@@ -57,9 +57,10 @@
               >person</mat-icon
             >
           </button>
-          <button mat-button>
+          <button mat-button [routerLink]="['/cart']">
             <mat-icon
               class="mat-icon-lg"
+              matBadge="{{ itemCount }}"
               matBadgeColor="warn"
               aria-hidden="false"
               >shopping_cart</mat-icon

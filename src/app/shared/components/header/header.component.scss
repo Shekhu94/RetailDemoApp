@@ -7,6 +7,9 @@
 .company-logo {
     box-sizing: border-box;
     max-width: 20%;
+    .logo {
+        color: white;
+    }
 }
 
 .company-search {
@@ -72,6 +75,10 @@
     }
 }
 
+.cartMsg div{
+    color: white;
+    padding-left: 4%;
+}
 
 
 @media screen and (min-width: 960px) {

@@ -1,11 +1,18 @@
-import { Component, EventEmitter, Output, inject } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Output,
+  ViewChild,
+  inject,
+} from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { MatMenuModule } from '@angular/material/menu';
+import { MatMenuModule, MatMenuTrigger } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatBadgeModule } from '@angular/material/badge';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { SidenavMenuComponent } from '../sidenav-menu/sidenav-menu.component';
 import { MenuComponent } from '../menu/menu.component';
@@ -16,12 +23,15 @@ import { ProfileStateModel } from '../../../store/profile/profile.model';
 import { CommonModule } from '@angular/common';
 import { SearchCriteriaModel } from '../../../store/products/products.model';
 import { GetProductListonSearch } from '../../../store/products/products.action';
+import { CartState } from '../../../store/cart/cart.state';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-header',
   standalone: true,
   imports: [
     CommonModule,
+    RouterLink,
     ReactiveFormsModule,
     MatToolbarModule,
     MatFormFieldModule,
@@ -31,6 +41,7 @@ import { GetProductListonSearch } from '../../../store/products/products.action'
     MatButtonModule,
     MatSidenavModule,
     MatMenuModule,
+    MatBadgeModule,
     SidenavMenuComponent,
     MenuComponent,
   ],
@@ -40,13 +51,20 @@ import { GetProductListonSearch } from '../../../store/products/products.action'
 export class HeaderComponent {
   @Output() loginEvent = new EventEmitter<string>();
   @Output() logoutEvent = new EventEmitter<string>();
+  @ViewChild('menuTrigger') menuTrigger!: MatMenuTrigger;
+
   public sidenavMenuItems: Array<any> = [];
   displayName: string | undefined = '';
   isSignedIn: boolean = false;
   search: String = '';
+  itemCount: Number = 0;
   public store = inject(Store);
   userProfileInfo$: Observable<ProfileStateModel> = this.store.select(
     ProfileState.getProfileInfo
+  );
+
+  itemsInCartCount$: Observable<Number> = this.store.select(
+    CartState.getProductsInCartCount
   );
   searchControl!: FormControl;
   searchedValue: SearchCriteriaModel = { searchedText: '', selectedMenu: '' };
@@ -62,6 +80,9 @@ export class HeaderComponent {
         this.searchedValue.searchedText = searchValue;
         this.store.dispatch(new GetProductListonSearch(this.searchedValue));
       });
+    this.itemsInCartCount$.subscribe((x) => {
+      this.itemCount = x;
+    });
   }
 
   ngOnInit() {

@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { ProductListModel } from './products.model';
+import { ProductListModel, Option } from './products.model';
 import { ProductListService } from '../../pages/product/product-list.service';
 import {
   GetProductDetails,
   GetProductList,
   GetProductListonMenu,
   GetProductListonSearch,
-  SetSelectedProduct,
+  SetSelectedProductSize,
 } from './products.action';
 
 export class ProductListStateModel {
@@ -16,7 +16,7 @@ export class ProductListStateModel {
   filteredProductList: ProductListModel[] = [];
   searchedText: string = '';
   selectedMenu: string = '';
-  selectedProduct: number = 0;
+  selectedSize: Option[] = [];
 }
 
 @State<ProductListStateModel>({
@@ -27,7 +27,7 @@ export class ProductListStateModel {
     filteredProductList: [],
     searchedText: '',
     selectedMenu: '',
-    selectedProduct: 0,
+    selectedSize: [],
   },
 })
 @Injectable()
@@ -91,14 +91,16 @@ export class ProductListState {
   }
 
   // set the selected product details
-  @Action(SetSelectedProduct) SetSelectedProduct(
+  @Action(SetSelectedProductSize) SetSelectedProductSize(
     ctx: StateContext<ProductListStateModel>,
-    action: SetSelectedProduct
+    action: SetSelectedProductSize
   ) {
     const state = ctx.getState();
+    let selectedSize: Option[] = [];
+    selectedSize.push(action.size);
     ctx.patchState({
       ...state,
-      selectedProduct: action.id,
+      selectedSize: selectedSize,
     });
   }
 
@@ -123,5 +125,11 @@ export class ProductListState {
   @Selector()
   static getProductDetails(state: ProductListStateModel) {
     return state.productDetails;
+  }
+
+  //select the product size from state
+  @Selector()
+  static getProductSize(state: ProductListStateModel) {
+    return state.selectedSize;
   }
 }

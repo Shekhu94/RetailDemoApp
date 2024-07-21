@@ -3,9 +3,9 @@
     <div class="gallery-container">
       <div class="product-gallery__featured">
         <owl-carousel-o [options]="mainCarouselOptions" #mainCarousel>
-          <ng-container *ngFor="let image of productImages">
-            <ng-template carouselSlide [id]="image.url" [dataMerge]="1">
-              <img [src]="image.url" />
+          <ng-container *ngFor="let image of productCaraouselImages">
+            <ng-template carouselSlide [id]="image" [dataMerge]="1">
+              <img [src]="image" />
             </ng-template>
           </ng-container>
         </owl-carousel-o>
@@ -13,17 +13,16 @@
 
       <div class="product-gallery__carousel">
         <owl-carousel-o [options]="thumbnailCarouselOptions">
-          <ng-container *ngFor="let image of productImages; let i = index">
-            <ng-template carouselSlide [id]="image.url + i" [width]="80">
-              <a
-                (click)="mainCarousel.to(image.url); changeimage(image.url + i)"
-              >
+          <ng-container
+            *ngFor="let image of productCaraouselImages; let i = index"
+          >
+            <ng-template carouselSlide [id]="image + i" [width]="80">
+              <a (click)="mainCarousel.to(image); changeimage(image + i)">
                 <img
-                  [src]="image.url"
+                  [src]="image"
                   [ngClass]="{
                     'product-gallery__carousel-item--active':
-                      selectedImage === image.url + i ||
-                      (i == 0 && !selectedImage)
+                      selectedImage === image + i || (i == 0 && !selectedImage)
                   }"
                 />
               </a>
@@ -61,18 +60,22 @@
       <div class="sizes">
         <span>size</span>
         <div>
-          @for(size of SelectedProductSizes;track $index; let ind = $index) {
+          @for(sz of SelectedProductSizes;track $index; let ind = $index) {
           <mat-card
             class="size"
             [ngClass]="{ 'selected-size': ind === selectedSizeIndex }"
-            (click)="selectSize($index)"
+            (click)="selectSize($index, sz)"
           >
-            <mat-card-content> {{ size }} </mat-card-content></mat-card
+            <mat-card-content> {{ sz.size }} </mat-card-content></mat-card
           >
           }
         </div>
         <div class="addCart">
-          <button mat-flat-button>
+          <button
+            mat-flat-button
+            [ngClass]="{ 'disable-cart': selectedSizeIndex == -1 }"
+            (click)="AddToCart()"
+          >
             <mat-icon
               aria-hidden="false"
               aria-label="Example shoppingcart icon"

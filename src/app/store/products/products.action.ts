@@ -1,4 +1,4 @@
-import { SearchCriteriaModel } from './products.model';
+import { Option, SearchCriteriaModel } from './products.model';
 
 export class GetProductList {
   static readonly type = '[ProductList page] GetProduct';
@@ -19,7 +19,7 @@ export class GetProductDetails {
   constructor(public id: string) {}
 }
 
-export class SetSelectedProduct {
-  static readonly type = '[ProductDetail page] SetSelectedProduct';
-  constructor(public id: number) {}
+export class SetSelectedProductSize {
+  static readonly type = '[ProductDetail page] SetSelectedProductSize';
+  constructor(public size: Option) {}
 }

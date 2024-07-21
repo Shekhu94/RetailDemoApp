@@ -1,3 +1,9 @@
+export interface Cart {
+  productId: string;
+  quantity: number;
+  size: string;
+}
+
 export interface CartStateModel {
-  items: { productId: string; quantity: number; image: string }[];
+  items: Cart[];
 }

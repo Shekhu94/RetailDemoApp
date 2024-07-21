@@ -131,3 +131,9 @@
         /* Force the first item to take full width */
     }
 }
+
+.disable-cart {
+    pointer-events: none;
+    opacity: 0.5;
+    cursor: not-allowed;
+}
