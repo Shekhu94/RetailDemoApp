@@ -16,8 +16,6 @@ export interface Variant {
   options: Option[];
   price: string;
   sku: string;
-  weight: string;
-  weight_unit: string;
 }
 
 export interface ProductListModel {
@@ -30,7 +28,6 @@ export interface ProductListModel {
   images: string[];
   inventory_quantity: string;
   name: string;
-  options: Option[];
   price: string;
   sku: string;
   status: string;

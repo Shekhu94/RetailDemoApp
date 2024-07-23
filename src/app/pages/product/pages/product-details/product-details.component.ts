@@ -20,6 +20,7 @@ import { ProductListState } from '../../../../store/products/products.state';
 import { AccordionModel } from '../../../../shared/components/product-accordion/product-accordion.model';
 import { Option } from '../../../../store/products/products.model';
 import { SetSelectedProductInCart } from '../../../../store/cart/cart.action';
+import { ProductService } from '../../product.service';
 
 @Component({
   selector: 'app-product-details',
@@ -55,6 +56,7 @@ export class ProductDetailsComponent {
   };
   private router = inject(ActivatedRoute);
   public store = inject(Store);
+  private productService = inject(ProductService);
   productDetails!: ProductListModel;
   productAccordion: AccordionModel[] = [];
   SelectedProductSizes: Option[] | undefined = [];
@@ -127,12 +129,16 @@ export class ProductDetailsComponent {
   }
 
   AddToCart() {
-    this.store.dispatch(
-      new SetSelectedProductInCart({
-        productId: this.selectedProduct.id,
-        quantity: 1,
-        size: this.selectedProduct.size,
-      })
-    );
+    this.productService
+      .addToCart(this.selectedProduct.id, 1, this.selectedProduct.size)
+      .subscribe((x) => {
+        this.store.dispatch(
+          new SetSelectedProductInCart({
+            productId: this.selectedProduct.id,
+            quantity: 1,
+            size: this.selectedProduct.size,
+          })
+        );
+      });
   }
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { ProductListModel, Option } from './products.model';
-import { ProductListService } from '../../pages/product/product-list.service';
+import { ProductService } from '../../pages/product/product.service';
 import {
   GetProductDetails,
   GetProductList,
@@ -32,7 +32,7 @@ export class ProductListStateModel {
 })
 @Injectable()
 export class ProductListState {
-  constructor(private productListService: ProductListService) {}
+  constructor(private productListService: ProductService) {}
   //get the product list
   @Action(GetProductList) addProfile(ctx: StateContext<ProductListStateModel>) {
     const state = ctx.getState();

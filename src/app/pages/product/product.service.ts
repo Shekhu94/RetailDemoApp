@@ -6,11 +6,11 @@ import { ProductListModel } from '../../store/products/products.model';
 @Injectable({
   providedIn: 'root',
 })
-export class ProductListService {
+export class ProductService {
   constructor(private httpClient: HttpClient) {}
 
   getProductList(): Observable<ProductListModel[]> {
-    return this.httpClient.get('http://localhost:3000/data').pipe(
+    return this.httpClient.get('http://localhost:3000/api/products').pipe(
       map((payload) => {
         return payload as ProductListModel[];
       })
@@ -18,10 +18,22 @@ export class ProductListService {
   }
 
   getProductDetails(id: string): Observable<ProductListModel[]> {
-    return this.httpClient.get('http://localhost:3000/data').pipe(
+    return this.httpClient.get('http://localhost:3000/api/products').pipe(
       map((payload) => {
         return payload as ProductListModel[];
       })
     );
+  }
+
+  addToCart(
+    productId: string,
+    quantity: number,
+    size: string
+  ): Observable<any> {
+    return this.httpClient.post('http://localhost:3000/api/cart', {
+      productId,
+      quantity,
+      size,
+    });
   }
 }
