@@ -1,0 +1,109 @@
+@import '../../styles/mixins';
+
+.details-container {
+    @include flex-container(row);
+    height: 100vh;
+    padding-top: 2%;
+}
+
+.left-panel {
+    flex: 5;
+    /* Takes 60% of the available space */
+    background-color: #ffffff;
+    width: 60%;
+}
+
+.left-panel>div {
+    padding-left: 6%;
+    padding-top: 2%;
+}
+
+.left-panel>h3 {
+    text-align: center;
+    font-weight: 500;
+}
+
+.right-panel {
+    flex: 5;
+    /* Takes 40% of the available space */
+    background-color: #ffffff;
+}
+
+
+.item-card {
+    display: flex;
+    flex-direction: row;
+    padding: 2%;
+    background-color: white;
+}
+
+.item-card>img {
+    flex: 1;
+}
+
+.item-card>mat-card-content {
+    flex: 8;
+}
+
+.cart-price {
+    @include flex-container(row);
+    justify-content: space-around;
+    padding-top: 4%;
+}
+
+.right-panel>h3 {
+    text-align: center;
+    font-weight: 500;
+}
+
+
+.right-panel>div {
+    text-align: center;
+}
+
+.cart-price p {
+    text-align: justify;
+}
+
+.signin-button {
+    @include cart-button;
+    background-color: #ffffff;
+    color: black;
+    border: 1px solid black;
+}
+
+.checkout-button {
+    @include cart-button;
+    background-color: black;
+    color: white;
+   
+}
+
+.cart-right {
+    padding-top: 4%;
+}
+
+.quantity {
+    display: flex; 
+    p {
+        padding-right: 3%
+    }
+}
+
+mat-select {
+    width: 6%;
+    border: 1px solid black;
+    padding: 1%;
+}
+
+@media screen and (max-width: 990px) {
+    .details-container {
+        flex-wrap: wrap;
+        /* Allow items to wrap */
+    }
+
+    .left-panel {
+        flex-basis: 100%;
+        /* Force the first item to take full width */
+    }
+}

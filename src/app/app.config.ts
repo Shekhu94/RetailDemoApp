@@ -36,6 +36,7 @@ import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { NgxsModule } from '@ngxs/store';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
+import { NgxsStoragePluginModule, StorageOption } from '@ngxs/storage-plugin';
 import { ProfileState } from './store/profile/profile.state';
 import { ProductListState } from './store/products/products.state';
 import { CartState } from './store/cart/cart.state';
@@ -99,6 +100,10 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom(
       NgxsModule.forRoot([ProfileState, ProductListState, CartState], {
         developmentMode: !environment.production,
+      }),
+      NgxsStoragePluginModule.forRoot({
+        keys: ['cart'],
+        storage: StorageOption.SessionStorage,
       })
     ),
     importProvidersFrom(

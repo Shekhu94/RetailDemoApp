@@ -1,1 +1,76 @@
-<p>cart works!</p>
+<div class="details-container">
+  <div class="left-panel">
+    <h3>Shopping Cart</h3>
+    <div>
+      <mat-card class="item-card" appearance="outlined">
+        <img
+          mat-card-image
+          src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+          alt="Photo of a Shiba Inu"
+          width="150px"
+        />
+        <mat-card-content>
+          <div>
+            <p>Product Name</p>
+            <p>Price</p>
+            <p>Size</p>
+            <div class="quantity">
+              <p>Quantity</p>
+              <mat-select [(value)]="selectedQuantity">
+                <mat-option
+                  *ngFor="let quantity of quantities"
+                  [value]="quantity.value"
+                >
+                  {{ quantity.viewValue }}
+                </mat-option>
+              </mat-select>
+            </div>
+          </div>
+        </mat-card-content>
+        <mat-icon>delete</mat-icon>
+      </mat-card>
+      <mat-card class="item-card" appearance="outlined">
+        <img
+          mat-card-image
+          src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+          alt="Photo of a Shiba Inu"
+          width="150px"
+        />
+        <mat-card-content>
+          <div>
+            <p>Product Name</p>
+            <p>Price</p>
+            <p>Size</p>
+          </div>
+        </mat-card-content>
+        <mat-icon>delete</mat-icon>
+      </mat-card>
+    </div>
+  </div>
+  <div class="right-panel">
+    <h3>Cart Total</h3>
+    <div class="cart-right">
+      <button mat-flat-button class="signin-button">
+        Sign Up
+        <mat-icon
+          aria-hidden="false"
+          aria-label="Example shoppingcart icon"
+          fontIcon="person"
+        ></mat-icon>
+      </button>
+      <div class="cart-price">
+        <div>
+          <p>Order value</p>
+          <p>Delivery</p>
+        </div>
+        <div>
+          <p>Rs. 1,499.00</p>
+          <p>Rs. 149.00</p>
+        </div>
+      </div>
+      <button mat-flat-button class="checkout-button">
+        Continue to checkout
+      </button>
+    </div>
+  </div>
+</div>
