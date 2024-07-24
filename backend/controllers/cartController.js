@@ -1,30 +1,36 @@
 const fs = require("fs");
 exports.getCart = (req, res) => {
-  fs.readFile("./mockedJsons/getProducts.json", "utf8", (err, data) => {
+  fs.readFile("./mockedJsons/cart.json", "utf8", (err, data) => {
     if (err) {
       res.status(500).send("Error reading mock data");
       console.log(err);
       return;
     }
-    let allData = JSON.parse(data);
-    let ids = [...req.params.id];
-    let allVariants = [];
-    for (let data of allData) {
-      data.variants.map((x) => allVariants.push(x));
-    }
-    for (let id of ids) {
-      console.log(allVariants.find((x) => x.id == id));
-    }
+    let cartData = JSON.parse(data);
+    let totalPrice = 0;
+    cartData = cartData.map((x) => {
+      x.price.finalPrice = x.price?.finalPrice * x.quantity;
+      totalPrice += x.price.finalPrice;
+      x.price.strikedPrice = x.price?.strikedPrice * x.quantity;
+      return x;
+    });
+
+    res.json({ cartData, totalPrice });
   });
 };
+
+// add to cart
 
 exports.addToCart = (req, res) => {
   const requestBody = req.body;
   console.log("Received data:", requestBody);
   let newData = {
-    id: req.body.productId,
+    productId: req.body.productId,
     quantity: req.body.quantity,
     size: req.body.size,
+    image: req.body.image,
+    price: req.body.price,
+    productName: req.body.productName,
   };
 
   fs.readFile("./mockedJsons/cart.json", "utf8", (err, data) => {

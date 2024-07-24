@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -13,6 +13,7 @@ import {
 } from '../../../../store/products/products.action';
 import { map, Observable } from 'rxjs';
 import {
+  Price,
   ProductListModel,
   VariantThumbnail,
 } from '../../../../store/products/products.model';
@@ -31,6 +32,7 @@ import { ProductService } from '../../product.service';
     MatCardModule,
     MatButtonModule,
     MatIconModule,
+    CurrencyPipe,
     ProductAccordionComponent,
   ],
   templateUrl: './product-details.component.html',
@@ -70,9 +72,18 @@ export class ProductDetailsComponent {
     ProductListState.getProductSize
   );
 
-  selectedImageIndex: number = 0;
+  selectedImageIndex: number = -1;
 
   selectedSizeIndex: number = -1;
+
+  selectedThumbnail: string = '';
+
+  priceObject: Price = {
+    finalPrice: '',
+    strikedPrice: '',
+  };
+
+  productName: string = '';
 
   constructor() {}
   ngOnInit() {
@@ -90,13 +101,17 @@ export class ProductDetailsComponent {
         this.createViewModel();
       });
 
-    this.productSelected$.subscribe((p) => {
-      this.selectedProduct = p[0];
+    this.productSelected$.subscribe((product) => {
+      this.selectedProduct = product[0];
     });
   }
 
   createViewModel() {
-    const { care, description, material } = this.productDetails || {};
+    const { care, description, material, price, strikedPrice, name } =
+      this.productDetails || {};
+    this.priceObject.finalPrice = price;
+    this.priceObject.strikedPrice = strikedPrice;
+    this.productName = name;
     this.productAccordion.push({ key: 'Care', value: care });
     this.productAccordion.push({ key: 'Description', value: description });
     this.productAccordion.push({ key: 'Material', value: material });
@@ -113,10 +128,15 @@ export class ProductDetailsComponent {
     )?.images;
   }
 
-  selectImage(index: number, variantId: number): void {
+  selectImage(
+    index: number,
+    variantId: number,
+    selectedThumbnail: string
+  ): void {
     this.selectedImageIndex = index;
     this.setCaraouselImages(variantId);
     this.selectedSizeIndex = -1;
+    this.selectedThumbnail = selectedThumbnail;
   }
 
   selectSize(index: number, size: Option): void {
@@ -130,13 +150,23 @@ export class ProductDetailsComponent {
 
   AddToCart() {
     this.productService
-      .addToCart(this.selectedProduct.id, 1, this.selectedProduct.size)
+      .addToCart(
+        this.selectedProduct.id,
+        1,
+        this.selectedProduct.size,
+        this.selectedThumbnail,
+        this.priceObject,
+        this.productName
+      )
       .subscribe((x) => {
         this.store.dispatch(
           new SetSelectedProductInCart({
             productId: this.selectedProduct.id,
             quantity: 1,
             size: this.selectedProduct.size,
+            image: this.selectedThumbnail,
+            price: this.priceObject,
+            productName: this.productName,
           })
         );
       });

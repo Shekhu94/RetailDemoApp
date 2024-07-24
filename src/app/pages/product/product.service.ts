@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { ProductListModel } from '../../store/products/products.model';
+import { Price, ProductListModel } from '../../store/products/products.model';
 
 @Injectable({
   providedIn: 'root',
@@ -28,12 +28,18 @@ export class ProductService {
   addToCart(
     productId: string,
     quantity: number,
-    size: string
+    size: string,
+    image: string,
+    price: Price,
+    productName: string
   ): Observable<any> {
     return this.httpClient.post('http://localhost:3000/api/cart', {
       productId,
       quantity,
       size,
+      image,
+      price,
+      productName,
     });
   }
 }

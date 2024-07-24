@@ -35,11 +35,15 @@
   <div class="right-panel">
     <!-- Your content for the right panel -->
     <div class="product-details">
-      <h6 class="description">Product description</h6>
+      <h6 class="description">{{ productName }}</h6>
       <h6 class="mrp">MRP inclusive of all taxes</h6>
       <div>
-        <span class="price">Rs. 539.00</span>
-        <span class="striked-price"><s>Rs. 1,799.00</s></span>
+        <span class="price">{{
+          priceObject.finalPrice | currency : "INR"
+        }}</span>
+        <span *ngIf="priceObject.strikedPrice" class="striked-price"
+          ><s>{{ priceObject.strikedPrice | currency : "INR" }}</s></span
+        >
       </div>
       <div class="variants">
         <div>
@@ -52,7 +56,7 @@
             width="100"
             height="100"
             [ngClass]="{ 'selected-image': i === selectedImageIndex }"
-            (click)="selectImage($index, thumbnail.id)"
+            (click)="selectImage($index, thumbnail.id, thumbnail.url)"
           />
           }
         </div>

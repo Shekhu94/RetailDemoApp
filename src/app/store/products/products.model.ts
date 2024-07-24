@@ -8,6 +8,11 @@ export interface Option {
   size: string;
 }
 
+export interface Price {
+  finalPrice: string;
+  strikedPrice: string;
+}
+
 export interface Variant {
   id: string;
   images: string[];
@@ -29,6 +34,7 @@ export interface ProductListModel {
   inventory_quantity: string;
   name: string;
   price: string;
+  strikedPrice: string;
   sku: string;
   status: string;
   tags: string[];
