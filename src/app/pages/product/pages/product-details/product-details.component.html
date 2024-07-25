@@ -77,7 +77,10 @@
         <div class="addCart">
           <button
             mat-flat-button
-            [ngClass]="{ 'disable-cart': selectedSizeIndex == -1 }"
+            [ngClass]="{
+              'disable-cart':
+                selectedSizeIndex == -1 || selectedImageIndex == -1
+            }"
             (click)="AddToCart()"
           >
             <mat-icon

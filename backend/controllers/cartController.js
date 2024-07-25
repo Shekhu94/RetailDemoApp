@@ -15,7 +15,7 @@ exports.getCart = (req, res) => {
       return x;
     });
 
-    res.json({ cartData, totalPrice });
+    res.json({ items: cartData, totalPrice });
   });
 };
 
@@ -23,14 +23,13 @@ exports.getCart = (req, res) => {
 
 exports.addToCart = (req, res) => {
   const requestBody = req.body;
-  console.log("Received data:", requestBody);
   let newData = {
-    productId: req.body.productId,
-    quantity: req.body.quantity,
-    size: req.body.size,
-    image: req.body.image,
-    price: req.body.price,
-    productName: req.body.productName,
+    productId: requestBody.productId,
+    quantity: requestBody.quantity,
+    size: requestBody.size,
+    image: requestBody.image,
+    price: requestBody.price,
+    productName: requestBody.productName,
   };
 
   fs.readFile("./mockedJsons/cart.json", "utf8", (err, data) => {
@@ -60,6 +59,42 @@ exports.addToCart = (req, res) => {
       res.status(200).json({
         success: true,
         message: "Request was successful!",
+      });
+    });
+  });
+};
+
+exports.deleteFromCart = (req, res) => {
+  fs.readFile("./mockedJsons/cart.json", "utf8", (err, data) => {
+    if (err) {
+      res.status(500).send("Error reading mock data");
+      console.log(err);
+      return;
+    }
+    let productId = req.params.id;
+    let cartData = JSON.parse(data).filter((x) => x.productId != productId);
+    let totalPrice = 0;
+    cartData = cartData.map((x) => {
+      x.price.finalPrice = x.price?.finalPrice * x.quantity;
+      totalPrice += x.price.finalPrice;
+      x.price.strikedPrice = x.price?.strikedPrice * x.quantity;
+      return x;
+    });
+
+    const updatedJson = JSON.stringify([...cartData], null, 2);
+
+    // Write the updated JSON back to the file
+    fs.writeFile("./mockedJsons/cart.json", updatedJson, "utf8", (err) => {
+      if (err) {
+        console.error(err);
+        return;
+      }
+
+      res.status(200).json({
+        success: true,
+        message: "Request was successful!",
+        items: cartData,
+        totalPrice,
       });
     });
   });

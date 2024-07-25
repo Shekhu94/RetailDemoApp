@@ -1,18 +1,25 @@
 import { State, Action, StateContext, Selector } from '@ngxs/store';
-import { CartStateModel } from './cart.model';
-import { SetSelectedProductInCart } from './cart.action';
+import { Cart, CartStateModel } from './cart.model';
+import {
+  DeleteSelectedProductFromCart,
+  GetCart,
+  SetSelectedProductInCart,
+} from './cart.action';
 import { Injectable } from '@angular/core';
+import { CartService } from '../../pages/cart/cart.service';
 
 @State<CartStateModel>({
   name: 'cart',
   defaults: {
     items: [],
+    totalPrice: '',
   },
 })
 @Injectable()
 export class CartState {
+  constructor(private cartService: CartService) {}
   // Actions will be defined here
-  // set the searched text
+  // set the selected prodcut in cart
   @Action(SetSelectedProductInCart) setSelectedProductInCart(
     ctx: StateContext<CartStateModel>,
     action: SetSelectedProductInCart
@@ -41,6 +48,37 @@ export class CartState {
       // Add the new item
       ctx.patchState({ items: [...state.items, action.payload] });
     }
+  }
+
+  // get the selected product details
+  @Action(GetCart) getCart(ctx: StateContext<CartStateModel>) {
+    const state = ctx.getState();
+    this.cartService.getCart().subscribe((payload) => {
+      ctx.setState({
+        ...state,
+        ...payload,
+        totalPrice: payload.totalPrice,
+      });
+    });
+  }
+
+  @Action(DeleteSelectedProductFromCart) deleteSelectedProductFromCart(
+    ctx: StateContext<CartStateModel>,
+    action: DeleteSelectedProductFromCart
+  ) {
+    const state = ctx.getState();
+    this.cartService.DeleteProductFromCart(action.id).subscribe((payload) => {
+      ctx.setState({
+        ...state,
+        items: payload.items,
+        totalPrice: payload.totalPrice,
+      });
+    });
+  }
+
+  @Selector()
+  static getCart(state: CartStateModel) {
+    return state;
   }
 
   @Selector()

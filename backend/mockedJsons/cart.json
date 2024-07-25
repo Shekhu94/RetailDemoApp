@@ -3,65 +3,10 @@
     "productId": "1m",
     "quantity": 1,
     "size": "M",
-    "image": "carousel/banner1.jpg",
-    "price": {
-      "finalPrice": "599.99",
-      "strikedPrice": "1999.99"
-    },
-    "productName": "MacBook Pro"
-  },
-  {
-    "productId": "2m",
-    "quantity": 1,
-    "size": "M",
-    "image": "carousel/banner1.jpg",
-    "price": {
-      "finalPrice": "599.99",
-      "strikedPrice": "1999.99"
-    },
-    "productName": "MacBook Pro"
-  },
-  {
-    "productId": "2s",
-    "quantity": 1,
-    "size": "S",
-    "image": "carousel/banner1.jpg",
-    "price": {
-      "finalPrice": "599.99",
-      "strikedPrice": "1999.99"
-    },
-    "productName": "MacBook Pro"
-  },
-  {
-    "productId": "1m",
-    "quantity": 1,
-    "size": "M",
-    "image": "carousel/banner1.jpg",
-    "price": {
-      "finalPrice": "599.99",
-      "strikedPrice": "1999.99"
-    },
-    "productName": "MacBook Pro"
-  },
-  {
-    "productId": "1m",
-    "quantity": 1,
-    "size": "M",
     "image": "carousel/blue_thumb.jpg",
     "price": {
-      "finalPrice": "599.99",
-      "strikedPrice": "1999.99"
-    },
-    "productName": "MacBook Pro"
-  },
-  {
-    "productId": "2l",
-    "quantity": 1,
-    "size": "L",
-    "image": "carousel/olive_thumb.jpg",
-    "price": {
-      "finalPrice": "599.99",
-      "strikedPrice": "1999.99"
+      "finalPrice": 599.99,
+      "strikedPrice": 1999.99
     },
     "productName": "MacBook Pro"
   }

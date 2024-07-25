@@ -11,10 +11,6 @@ export interface Cart {
 
 export interface CartStateModel {
   items: Cart[];
-}
-
-export interface CartModel {
-  cartData: Cart[];
   totalPrice: string;
 }
 
