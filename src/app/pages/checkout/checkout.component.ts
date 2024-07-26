@@ -13,7 +13,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatStepper, MatStepperModule } from '@angular/material/stepper';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { StaticdataService } from '../../shared/services/staticdata.service';
 import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
@@ -88,6 +88,8 @@ export class CheckoutComponent {
       console.log(res);
     },
   };
+
+  constructor(private router: Router, private route: ActivatedRoute) {}
   ngOnInit() {
     this.countries = this.staticDataService.getCountries();
     this.months = this.staticDataService.getMonths();
@@ -142,12 +144,11 @@ export class CheckoutComponent {
     this.RazorpayOptions.prefill.phone =
       this.billingForm.get('phone')?.value || '';
 
-    this.RazorpayOptions.handler = this.paymentResponseHandler;
+    this.RazorpayOptions.handler = this.paymentResponseHandler.bind(this);
     Razorpay.open(this.RazorpayOptions);
   }
 
   paymentResponseHandler(paymentid: any) {
-    console.log(paymentid);
-    console.log('done');
+    this.router.navigate(['order'], { relativeTo: this.route });
   }
 }
