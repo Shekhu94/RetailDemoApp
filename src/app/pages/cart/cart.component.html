@@ -51,10 +51,14 @@
         </div>
         <div>
           <p>{{ totalPrice | currency : "INR" }}</p>
-          <p>{{ deliveryCharge | currency : "INR" }}</p>
+          <p>Depends on shipping mode</p>
         </div>
       </div>
-      <button mat-flat-button class="checkout-button">
+      <button
+        mat-flat-button
+        class="checkout-button"
+        [routerLink]="['/checkout']"
+      >
         Continue to checkout
       </button>
     </div>

@@ -1,0 +1,238 @@
+<div>
+  <mat-stepper
+    #horizontalStepper
+    [orientation]="stepperOrientation"
+    linear="true"
+    class="mat-elevation-z2"
+  >
+    <mat-step [stepControl]="billingForm" label="Billing address">
+      <form [formGroup]="billingForm">
+        <div class="flex-form">
+          <div class="flex-fields-group1 pr-1">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>First name</mat-label>
+              <input
+                matInput
+                placeholder="First name"
+                formControlName="firstName"
+                required
+              />
+              @if (billingForm.controls['firstName'].errors?.['required']) {
+              <mat-error>First name is required</mat-error>
+              }
+            </mat-form-field>
+          </div>
+          <div class="flex-fields-group1 pr-1">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Last name</mat-label>
+              <input
+                matInput
+                placeholder="Last name"
+                formControlName="lastName"
+                required
+              />
+              @if (billingForm.controls['lastName'].errors?.['required']) {
+              <mat-error>Last name is required</mat-error>
+              }
+            </mat-form-field>
+          </div>
+          <div class="flex-fields-group1 pr-1">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Middle Name/Initial</mat-label>
+              <input
+                matInput
+                placeholder="Middle Name/Initial"
+                formControlName="middleName"
+              />
+            </mat-form-field>
+          </div>
+          <div class="flex-fields-group1 pr-1">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Company</mat-label>
+              <input matInput placeholder="Company" formControlName="company" />
+            </mat-form-field>
+          </div>
+          <div class="flex-fields-group1 pr-1">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Email</mat-label>
+              <input
+                matInput
+                placeholder="Email"
+                formControlName="email"
+                required
+              />
+              @if (billingForm.controls['email'].errors?.['required']) {
+              <mat-error>Email is required</mat-error>
+              }
+            </mat-form-field>
+          </div>
+          <div class="flex-fields-group1 pr-1">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Phone</mat-label>
+              <input
+                matInput
+                placeholder="Phone"
+                formControlName="phone"
+                required
+              />
+              @if (billingForm.controls['phone'].errors?.['required']) {
+              <mat-error>Phone is required</mat-error>
+              }
+            </mat-form-field>
+          </div>
+          <div class="flex-fields-group2 pr-1">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Country</mat-label>
+              <mat-select
+                placeholder="Country"
+                formControlName="country"
+                required
+              >
+                @for (country of countries; track $index) {
+                <mat-option [value]="country">{{ country.name }}</mat-option>
+                }
+              </mat-select>
+              @if (billingForm.controls['country'].errors?.['required']) {
+              <mat-error>Country is required</mat-error>
+              }
+            </mat-form-field>
+          </div>
+          <div class="flex-fields-group2 pr-1">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>City</mat-label>
+              <input
+                matInput
+                placeholder="City"
+                formControlName="city"
+                required
+              />
+              @if (billingForm.controls['city'].errors?.['required']) {
+              <mat-error>City is required</mat-error>
+              }
+            </mat-form-field>
+          </div>
+          <div class="flex-fields-group2 pr-1">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>State/Province</mat-label>
+              <input
+                matInput
+                placeholder="State/Province"
+                formControlName="state"
+              />
+            </mat-form-field>
+          </div>
+          <div class="flex-fields-group2 pr-1">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Zip/Postal Code</mat-label>
+              <input
+                matInput
+                placeholder="Zip/Postal Code"
+                formControlName="zip"
+                required
+              />
+              @if (billingForm.controls['zip'].errors?.['required']) {
+              <mat-error>Zip/Postal Code is required</mat-error>
+              }
+            </mat-form-field>
+          </div>
+          <div class="flex-fields-address pr-1">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Address</mat-label>
+              <input
+                matInput
+                placeholder="Address (street, apartment, suite, unit etc.)"
+                formControlName="address"
+                required
+              />
+              @if (billingForm.controls['address'].errors?.['required']) {
+              <mat-error>Address is required</mat-error>
+              }
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="nav-buttons">
+          <button
+            mat-mini-fab
+            matStepperNext
+            color="primary"
+            matTooltip="Next"
+            matTooltipPosition="after"
+          >
+            <mat-icon>navigate_next</mat-icon>
+          </button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="deliveryForm" label="Delivery method">
+      <form [formGroup]="deliveryForm" class="p-2">
+        <mat-radio-group
+          formControlName="deliveryMethod"
+          fxLayout="column"
+          fxLayoutAlign="center"
+          required
+          name="methods"
+        >
+          @for (method of deliveryMethods; track $index) {
+          <mat-radio-button color="primary" [value]="method" class="mt-1"
+            ><b>{{ method.name }}</b> {{ method.desc }}</mat-radio-button
+          >
+          }
+        </mat-radio-group>
+        <div class="nav-buttons">
+          <button
+            mat-mini-fab
+            matStepperPrevious
+            color="primary"
+            matTooltip="Back"
+            matTooltipPosition="before"
+            class="mr-1"
+          >
+            <mat-icon>navigate_before</mat-icon>
+          </button>
+          <button
+            mat-mini-fab
+            matStepperNext
+            color="primary"
+            matTooltip="Next"
+            matTooltipPosition="after"
+          >
+            <mat-icon>navigate_next</mat-icon>
+          </button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="paymentForm" label="Payment method">
+      <div class="payment-tab">
+        <div></div>
+        <div>
+          <div>Grand Total: {{ grandTotal | currency : "INR" }}</div>
+          <div>
+            <button class="add-to-cart" mat-flat-button (click)="payNow()">
+              <mat-icon
+                aria-hidden="false"
+                aria-label="Example shoppingcart icon"
+                fontIcon="payment"
+              ></mat-icon>
+              Add
+            </button>
+          </div>
+
+          <svg
+            class="PaymentList-module--paymentIcon__watw3 PaymentList-module--iconLarge__1eZ1D PaymentList-module--multipleIcons__tIQNe"
+            viewBox="0 0 39 40"
+            xmlns="http://www.w3.org/2000/svg"
+            role="img"
+            aria-labelledby="emi-logo"
+          >
+            <title id="emi-logo">EMI</title>
+            <path
+              d="M13.677 26v-2.124H6.315V20.6h4.77v-2.124h-4.77v-2.952h7.146V13.4h-9.45V26h9.666Zm4.608 0v-9.882l3.528 7.596h2.16l3.528-7.632V26h2.304V13.4h-3.348l-3.564 7.65-3.564-7.65h-3.348V26h2.304Zm16.704 0V13.4h-2.304V26h2.304Z"
+              fill="#000"
+            ></path>
+          </svg>
+        </div>
+        <div></div>
+      </div>
+    </mat-step>
+  </mat-stepper>
+</div>

@@ -13,12 +13,14 @@ import {
   DeleteSelectedProductFromCart,
   GetCart,
 } from '../../store/cart/cart.action';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
   imports: [
     CommonModule,
+    RouterModule,
     MatCardModule,
     MatIconModule,
     MatButtonModule,

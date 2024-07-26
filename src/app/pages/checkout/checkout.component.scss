@@ -1,0 +1,56 @@
+.flex-form {
+    flex-flow: wrap;
+    box-sizing: border-box;
+    display: flex;
+    padding-top: 2%;
+}
+
+.flex-fields-group1 {
+    flex: 1 1 33.3%;
+    box-sizing: border-box;
+    max-width: 33.3%;
+}
+
+
+.flex-fields-group2 {
+    flex: 1 1 25%;
+    box-sizing: border-box;
+    max-width: 25%;
+}
+
+.flex-fields-address{
+    flex: 1 1 100%;
+    box-sizing: border-box;
+    max-width: 100%;
+}
+
+.w-100 {
+    width: 100% !important;
+}
+
+.pr-1 {
+    padding-right: 0.25rem !important;
+}
+
+.nav-buttons{
+    flex-direction: row;
+    box-sizing: border-box;
+    display: flex;
+    place-content: center;
+    align-items: center;
+    margin-right:1%
+}
+
+.check-out {
+    margin-left: 1%;
+}
+
+.payment-tab {
+    display: flex;
+}
+
+.payment-tab > div{
+    flex: 1 1 33.3%;
+    box-sizing: border-box;
+    max-width: 33.3%;
+}

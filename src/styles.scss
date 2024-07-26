@@ -64,6 +64,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     width: 100%; /* Ensures the image width is responsive */
 }
 
+mat-icon {
+    color: white !important;
+}
 
 @media screen and (max-width: 600px) {
     .product-gallery__featured .owl-carousel .owl-item img {
