@@ -1,3 +1,4 @@
+const fs = require("fs");
 var Razorpay = require("razorpay");
 
 var instance = new Razorpay({
@@ -18,12 +19,26 @@ exports.getOrderId = (req, res, next) => {
       next(err);
     }
     if (order) {
-      res.json({
+      let orderJson = {
         success: true,
         status: "Order created successfully",
-        value: order,
+        orderId: order.id,
+        createdAt: order.created_at,
         key: "rzp_test_GCT0rSIkStB0uH",
-      });
+      };
+
+      fs.writeFile(
+        "./mockedJsons/order.json",
+        JSON.stringify([orderJson]),
+        "utf8",
+        (err) => {
+          if (err) {
+            console.error(err);
+            return;
+          }
+          res.json(orderJson);
+        }
+      );
     }
   });
 };

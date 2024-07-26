@@ -19,6 +19,8 @@ import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { CartStateModel } from '../../store/cart/cart.model';
 import { CartState } from '../../store/cart/cart.state';
+import { CheckoutService } from './checkout.service';
+import { Order } from './checkout.model';
 declare var Razorpay: any;
 @Component({
   selector: 'app-checkout',
@@ -39,7 +41,7 @@ declare var Razorpay: any;
   ],
   templateUrl: './checkout.component.html',
   styleUrl: './checkout.component.scss',
-  providers: [StaticdataService],
+  providers: [StaticdataService, CheckoutService],
 })
 export class CheckoutComponent {
   @ViewChild('horizontalStepper') horizontalStepper!: MatStepper;
@@ -52,13 +54,40 @@ export class CheckoutComponent {
   years: string[] = [];
   deliveryMethods: { value: string; name: string; desc: string }[] = [];
   grandTotal = 0;
+  orderDetails: Order = { orderId: '', createdAt: '', razorKey: '' };
   formBuilder = inject(FormBuilder);
   staticDataService = inject(StaticdataService);
   store = inject(Store);
+  checkoutService = inject(CheckoutService);
 
   cartDetails$: Observable<CartStateModel> = this.store.select(
     CartState.getCart
   );
+  RazorpayOptions = {
+    description: 'YCompany Razor Payment',
+    currency: 'INR',
+    amount: 100000,
+    name: '',
+    key: '',
+    image: 'https://i.imgur.com/FApqk3D.jpeg',
+    prefill: {
+      name: '',
+      email: '',
+      phone: '',
+    },
+    order_id: '',
+    theme: {
+      color: '#6466e3',
+    },
+    modal: {
+      ondismiss: () => {
+        console.log('dismissed');
+      },
+    },
+    handler: (res: any) => {
+      console.log(res);
+    },
+  };
   ngOnInit() {
     this.countries = this.staticDataService.getCountries();
     this.months = this.staticDataService.getMonths();
@@ -87,40 +116,38 @@ export class CheckoutComponent {
 
   checkout() {
     console.log(this.billingForm);
-    this.payNow();
+    this.checkoutService
+      .createOrder(this.grandTotal)
+      .subscribe((order: Order) => {
+        console.log(order);
+        this.orderDetails.createdAt = order.createdAt;
+        this.orderDetails.orderId = order.orderId;
+        this.orderDetails.razorKey = order.razorKey;
+        this.payNow();
+      });
   }
 
   payNow() {
-    const RozarpayOptions = {
-      description: 'Sample Razorpay demo',
-      currency: 'INR',
-      amount: 100000,
-      name: 'Shekhar Saini',
-      key: 'rzp_test_GCT0rSIkStB0uH',
-      image: 'https://i.imgur.com/FApqk3D.jpeg',
-      prefill: {
-        name: 'Shekhar Saini',
-        email: 'shekhu.93hhh@gmail.com',
-        phone: '9898989898',
-      },
-      theme: {
-        color: '#6466e3',
-      },
-      modal: {
-        ondismiss: () => {
-          console.log('dismissed');
-        },
-      },
-    };
+    this.RazorpayOptions.key = this.orderDetails.razorKey;
+    this.RazorpayOptions.order_id = this.orderDetails.orderId;
+    this.RazorpayOptions.amount = this.grandTotal;
+    this.RazorpayOptions.name =
+      this.billingForm.get('firstName')?.value +
+      ' ' +
+      this.billingForm.get('lastName')?.value;
 
-    const successCallback = (paymentid: any) => {
-      console.log(paymentid);
-    };
+    this.RazorpayOptions.prefill.name = this.RazorpayOptions.name;
+    this.RazorpayOptions.prefill.email =
+      this.billingForm.get('email')?.value || '';
+    this.RazorpayOptions.prefill.phone =
+      this.billingForm.get('phone')?.value || '';
 
-    const failureCallback = (e: any) => {
-      console.log(e);
-    };
+    this.RazorpayOptions.handler = this.paymentResponseHandler;
+    Razorpay.open(this.RazorpayOptions);
+  }
 
-    Razorpay.open(RozarpayOptions, successCallback, failureCallback);
+  paymentResponseHandler(paymentid: any) {
+    console.log(paymentid);
+    console.log('done');
   }
 }

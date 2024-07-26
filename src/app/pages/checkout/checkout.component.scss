@@ -1,3 +1,5 @@
+@import '../../styles/mixins';
+
 .flex-form {
     flex-flow: wrap;
     box-sizing: border-box;
@@ -49,8 +51,38 @@
     display: flex;
 }
 
-.payment-tab > div{
-    flex: 1 1 33.3%;
-    box-sizing: border-box;
-    max-width: 33.3%;
+.left-section,
+.right-section {
+  flex: 1; 
+}
+
+.central-section {
+  flex: 2; 
+}
+
+.grand-total {
+    text-align: center;
+    font-weight: 400;
+    font-size: x-large;
+    padding-top: 10%;
+}
+
+.check-out-button {
+    padding-top: 15%;
+  button {
+    width: 100%;
+    background-color: black;
+    color: white;
+    height: 50px;
+    
+  }
+}
+
+.payment-modes {
+    @include flex-container(row);
+    padding-top: 12%;
+    justify-content: space-between;
+    p {
+        width: 15%;
+    }
 }
