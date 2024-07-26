@@ -23,3 +23,8 @@ export class DeleteSelectedProductFromCart {
   static readonly type = '[Cart page] DeleteSelectedProductFromCart';
   constructor(public id: string) {}
 }
+
+export class ClearCartAfterSuccessfulOrder {
+  static readonly type = '[Checkout page] ClearCartAfterSuccessfulOrder';
+  constructor() {}
+}

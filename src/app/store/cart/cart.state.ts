@@ -1,6 +1,7 @@
 import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { Cart, CartStateModel } from './cart.model';
 import {
+  ClearCartAfterSuccessfulOrder,
   DeleteSelectedProductFromCart,
   GetCart,
   SetSelectedProductInCart,
@@ -73,6 +74,19 @@ export class CartState {
         items: payload.items,
         totalPrice: payload.totalPrice,
       });
+    });
+  }
+
+  @Action(ClearCartAfterSuccessfulOrder) clearCartAfterSuccessfulOrder(
+    ctx: StateContext<CartStateModel>
+  ) {
+    const state = ctx.getState();
+    let initialState: CartStateModel = {
+      items: [],
+      totalPrice: '',
+    };
+    ctx.setState({
+      ...initialState,
     });
   }
 

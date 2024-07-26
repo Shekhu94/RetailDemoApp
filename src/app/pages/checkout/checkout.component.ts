@@ -21,6 +21,7 @@ import { CartStateModel } from '../../store/cart/cart.model';
 import { CartState } from '../../store/cart/cart.state';
 import { CheckoutService } from './checkout.service';
 import { Order } from './checkout.model';
+import { ClearCartAfterSuccessfulOrder } from '../../store/cart/cart.action';
 declare var Razorpay: any;
 @Component({
   selector: 'app-checkout',
@@ -149,6 +150,7 @@ export class CheckoutComponent {
   }
 
   paymentResponseHandler(paymentid: any) {
+    this.store.dispatch(new ClearCartAfterSuccessfulOrder());
     this.router.navigate(['order'], { relativeTo: this.route });
   }
 }
