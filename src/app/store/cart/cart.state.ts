@@ -80,6 +80,7 @@ export class CartState {
   @Action(ClearCartAfterSuccessfulOrder) clearCartAfterSuccessfulOrder(
     ctx: StateContext<CartStateModel>
   ) {
+    window.sessionStorage.clear(); // clearing cart state from session
     const state = ctx.getState();
     let initialState: CartStateModel = {
       items: [],

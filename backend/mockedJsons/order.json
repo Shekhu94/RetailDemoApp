@@ -1,1 +1,9 @@
-[{"success":true,"status":"Order created successfully","orderId":"order_OdHi4HTcmD19lr","createdAt":1722002111,"key":"rzp_test_GCT0rSIkStB0uH"}]
+[
+  {
+    "success": true,
+    "status": "Order created successfully",
+    "orderId": "order_OdHi4HTcmD19lr",
+    "createdAt": 1722002111,
+    "key": "rzp_test_GCT0rSIkStB0uH"
+  }
+]

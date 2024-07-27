@@ -1,0 +1,44 @@
+.account-heading {
+    text-align: center;
+    font-size: xx-large;
+    font-weight: 600;
+    padding-top: 3%;
+}
+
+.order-section {
+    width: 50%;
+    position: relative;
+    left: 25%;
+}
+
+.order-heading{
+    padding-top: 4%;
+    font-size: larger;
+    font-weight: 700;
+    padding-bottom: 2%;
+}
+
+
+@media screen and (max-width: 600px) {
+    .order-section {
+        width: 50%;
+        position: relative;
+        left: 20%;
+    }
+
+    .account-heading{
+        text-align: center;
+        font-size: x-large;
+        font-weight: 600;
+        padding-top: 3%;
+    }
+
+    .order-heading{
+        padding-top: 15%;
+        font-size: larger;
+        font-weight: 700;
+        padding-bottom: 2%;
+    }
+    
+    
+}

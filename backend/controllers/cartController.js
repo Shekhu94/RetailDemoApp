@@ -8,12 +8,16 @@ exports.getCart = (req, res) => {
     }
     let cartData = JSON.parse(data);
     let totalPrice = 0;
-    cartData = cartData.map((x) => {
-      x.price.finalPrice = x.price?.finalPrice * x.quantity;
-      totalPrice += x.price.finalPrice;
-      x.price.strikedPrice = x.price?.strikedPrice * x.quantity;
-      return x;
-    });
+    if (Array.isArray(cartData)) {
+      cartData = cartData.map((x) => {
+        x.price.finalPrice = x.price?.finalPrice * x.quantity;
+        totalPrice += x.price.finalPrice;
+        x.price.strikedPrice = x.price?.strikedPrice * x.quantity;
+        return x;
+      });
+    } else {
+      cartData = [];
+    }
 
     res.json({ items: cartData, totalPrice });
   });

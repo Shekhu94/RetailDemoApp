@@ -25,6 +25,7 @@ exports.getOrderId = (req, res, next) => {
         orderId: order.id,
         createdAt: order.created_at,
         key: "rzp_test_GCT0rSIkStB0uH",
+        totalPrice: req.body.amount,
       };
 
       fs.writeFile(
