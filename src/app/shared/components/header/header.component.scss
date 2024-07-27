@@ -90,6 +90,10 @@
     color: white;
 }
 
+mat-icon {
+    color: white !important;
+}
+
 @media screen and (min-width: 960px) {
     .sidenav-toggle {
         display: none;

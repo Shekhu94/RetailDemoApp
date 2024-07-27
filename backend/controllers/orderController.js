@@ -28,6 +28,8 @@ exports.getOrderId = (req, res, next) => {
         totalPrice: req.body.amount,
       };
 
+      clearCart();
+
       fs.writeFile(
         "./mockedJsons/order.json",
         JSON.stringify([orderJson]),
@@ -52,5 +54,13 @@ exports.getOrderDetails = (req, res, next) => {
       return;
     }
     res.json(JSON.parse(data));
+  });
+};
+
+clearCart = () => {
+  fs.writeFile("./mockedJsons/cart.json", JSON.stringify({}), "utf8", (err) => {
+    if (err) {
+      console.error(err);
+    }
   });
 };

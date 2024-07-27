@@ -31,7 +31,7 @@ export interface Product {
   created_at: string;
   description: string;
   id: string;
-  images: Image[];
+  image: string;
   inventory_quantity: string;
   name: string;
   options: Option[];

@@ -112,6 +112,7 @@ export class ProductDetailsComponent {
     this.priceObject.finalPrice = price;
     this.priceObject.strikedPrice = strikedPrice;
     this.productName = name;
+    this.productAccordion = [];
     this.productAccordion.push({ key: 'Care', value: care });
     this.productAccordion.push({ key: 'Description', value: description });
     this.productAccordion.push({ key: 'Material', value: material });

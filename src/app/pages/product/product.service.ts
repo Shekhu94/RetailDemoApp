@@ -18,7 +18,7 @@ export class ProductService {
   }
 
   getProductDetails(id: string): Observable<ProductListModel[]> {
-    return this.httpClient.get('http://localhost:3000/api/products').pipe(
+    return this.httpClient.get(`http://localhost:3000/api/products/${id}`).pipe(
       map((payload) => {
         return payload as ProductListModel[];
       })

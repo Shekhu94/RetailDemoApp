@@ -2,26 +2,22 @@
   {
     "category": "Ladies",
     "created_at": "2020-09-30T07:43:32.000Z",
-    "description": "Powerful and portable, the MacBook Pro is perfect for professionals and creatives.",
+    "description": "Tie-belt shirt dress",
     "material": "Viscose 80%, Polyamide 20%",
     "care": "You too can help the environment and make fashion more sustainable. Bring unwanted clothes or home textiles to any H&M store and they will be reworn, reused or recycled.",
     "id": "1",
-    "images": [
-      {
-        "url": "https://example.com/macbook-pro.jpg"
-      }
-    ],
+    "images": "carousel/women_main.jpg",
     "inventory_quantity": "10",
-    "name": "MacBook Pro",
+    "name": "Tie-belt shirt dress",
     "strikedPrice": "1999.99",
     "price": "599.99",
     "sku": "MBP123",
     "status": "active",
-    "tags": ["Apple"],
+    "tags": ["Dress"],
     "variants": [
       {
         "id": "1",
-        "images": ["carousel/blue_1.jpg", "carousel/blue_2.jpg"],
+        "images": ["carousel/women_blue_1.jpg", "carousel/women_blue_2.jpg"],
         "inventory_quantity": "5",
         "name": "Midnight 16inch MacBook Pro",
         "price": "1999.99",
@@ -47,7 +43,11 @@
       },
       {
         "id": "2",
-        "images": ["carousel/olive_1.jpeg", "carousel/olive_2.jpeg"],
+        "images": [
+          "carousel/women_black_1.jpg",
+          "carousel/women_black_2.jpg",
+          "carousel/women_black_3.jpg"
+        ],
         "inventory_quantity": "5",
         "name": "Midnight 16inch MacBook Pro",
         "options": [
@@ -71,60 +71,87 @@
     "variants_thumbnail": [
       {
         "id": 1,
-        "url": "carousel/blue_thumb.jpg"
+        "url": "carousel/women_blue_thumb.jpg"
       },
       {
         "id": 2,
-        "url": "carousel/olive_thumb.jpg"
+        "url": "carousel/women_black_thumb.jpg"
       }
     ]
   },
   {
     "category": "Men",
     "created_at": "2020-09-30T07:43:32.000Z",
-    "description": "Powerful and portable, the Legion is perfect for professionals and creatives.",
+    "description": "Regular Fit Oxford shirt",
     "material": "Cotton 100%",
     "care": "You too can help the environment and make fashion more sustainable. Bring unwanted clothes or home textiles to any H&M store and they will be reworn, reused or recycled.",
     "id": "2",
-    "images": [
-      {
-        "url": "https://example.com/macbook-pro.jpg"
-      }
-    ],
+    "images": "carousel/men_main.jpg",
     "inventory_quantity": "10",
-    "name": "Lenovo",
+    "name": "Regular Fit Oxford shirt",
     "strikedPrice": "1999.99",
     "price": "599.99",
     "sku": "MBP123",
     "status": "active",
-    "tags": ["Lenovo"],
+    "tags": ["Shirt"],
     "variants": [
       {
-        "id": "1",
-        "images": [
-          {
-            "id": "12345",
-            "url": "https://example.com/macbook-pro.jpg"
-          }
-        ],
+        "id": "3",
+        "images": ["carousel/men_blue_1.jpg", "carousel/men_blue_2.jpg"],
         "inventory_quantity": "5",
-        "name": "Midnight 16inch Legion",
+        "name": "Midnight 16inch MacBook Pro",
+        "price": "1999.99",
+        "sku": "MBP123-16GB-SILVER-13",
         "options": [
           {
-            "id": "1",
-            "name": "Color",
-            "value": "Silver"
+            "id": "3s",
+            "size": "S"
+          },
+          {
+            "id": "3m",
+            "size": "M"
+          },
+          {
+            "id": "3l",
+            "size": "L"
+          },
+          {
+            "id": "3xl",
+            "size": "XL"
+          }
+        ]
+      },
+      {
+        "id": "4",
+        "images": ["carousel/men_olive_1.jpg", "carousel/men_olive_2.jpg"],
+        "inventory_quantity": "5",
+        "name": "Midnight 16inch MacBook Pro",
+        "options": [
+          {
+            "id": "4s",
+            "size": "S"
+          },
+          {
+            "id": "4m",
+            "size": "M"
+          },
+          {
+            "id": "4l",
+            "size": "L"
           }
         ],
         "price": "1999.99",
-        "sku": "MBP123-16GB-SILVER-13",
-        "sizes": ["S", "M", "L", "XL"]
+        "sku": "MBP123-16GB-SILVER-13"
       }
     ],
     "variants_thumbnail": [
       {
+        "id": 3,
+        "url": "carousel/men_blue_thumb.jpg"
+      },
+      {
         "id": 4,
-        "url": "https://example.com/macbook-pro.jpg"
+        "url": "carousel/men_olive_thumb.jpg"
       }
     ]
   }
