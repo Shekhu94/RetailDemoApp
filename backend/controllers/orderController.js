@@ -43,3 +43,14 @@ exports.getOrderId = (req, res, next) => {
     }
   });
 };
+
+exports.getOrderDetails = (req, res, next) => {
+  fs.readFile("./mockedJsons/order.json", "utf8", (err, data) => {
+    if (err) {
+      res.status(500).send("Error reading mock data");
+      console.log(err);
+      return;
+    }
+    res.json(JSON.parse(data));
+  });
+};

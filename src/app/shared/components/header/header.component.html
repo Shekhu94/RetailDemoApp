@@ -81,13 +81,14 @@
                   </button>
                   <button mat-flat-button>Register</button>
                 </ng-template>
-                <button
-                  *ngIf="isSignedIn; else elseBlock"
-                  mat-flat-button
-                  (click)="triggerLogoutFlow('')"
-                >
-                  Logout
-                </button>
+                <ng-container *ngIf="isSignedIn; else elseBlock">
+                  <button mat-flat-button [routerLink]="['/checkout/order']">
+                    My Account
+                  </button>
+                  <button mat-flat-button (click)="triggerLogoutFlow('')">
+                    Logout
+                  </button>
+                </ng-container>
               </div>
             </ng-template>
           </mat-menu>

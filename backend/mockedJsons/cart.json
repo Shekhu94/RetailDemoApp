@@ -1,1 +1,13 @@
-{}
+[
+  {
+    "productId": "1m",
+    "quantity": 1,
+    "size": "M",
+    "image": "carousel/blue_thumb.jpg",
+    "price": {
+      "finalPrice": "599.99",
+      "strikedPrice": "1999.99"
+    },
+    "productName": "MacBook Pro"
+  }
+]
