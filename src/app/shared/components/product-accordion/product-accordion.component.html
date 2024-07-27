@@ -1,5 +1,5 @@
 <cdk-accordion class="accordion">
-  @for (item of AccordionData; track item; let index = $index) {
+  @for (item of AccordionData; track item.key; let index = $index) {
   <cdk-accordion-item
     #accordionItem="cdkAccordionItem"
     class="accordion-item"
