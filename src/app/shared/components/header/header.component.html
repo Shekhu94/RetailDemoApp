@@ -47,9 +47,14 @@
         </form>
       </div>
       <div class="cart-icon">
-        <div [@.disabled]="true" class="display-name">
-          {{ displayName }}
-          <button mat-button [matMenuTriggerFor]="userLogin">
+        <div>
+          <span class="display-name">{{ displayName }}</span>
+          <button
+            mat-button
+            [matMenuTriggerFor]="userLogin"
+            [matTooltip]="displayName ? displayName : ''"
+            matTooltipPosition="below"
+          >
             <mat-icon
               class="mat-icon-lg"
               matBadgeColor="warn"

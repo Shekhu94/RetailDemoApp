@@ -13,6 +13,7 @@ import { MatMenuModule, MatMenuTrigger } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatBadgeModule } from '@angular/material/badge';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { SidenavMenuComponent } from '../sidenav-menu/sidenav-menu.component';
 import { MenuComponent } from '../menu/menu.component';
@@ -34,6 +35,7 @@ import { RouterLink } from '@angular/router';
     RouterLink,
     ReactiveFormsModule,
     MatToolbarModule,
+    MatTooltipModule,
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
