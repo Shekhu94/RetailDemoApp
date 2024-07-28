@@ -1,6 +1,9 @@
 <div class="details-container">
   <div class="left-panel">
     <h3>Shopping Cart</h3>
+    <div *ngIf="cartModel.items.length == 0" class="empty-message">
+      Your Shopping Bag is empty!
+    </div>
     <div>
       @for(cartItem of cartModel.items;track $index; let ind = $index) {
       <mat-card class="item-card" appearance="outlined">
@@ -36,7 +39,12 @@
   <div class="right-panel">
     <h3>Cart Total</h3>
     <div class="cart-right">
-      <button mat-flat-button class="signin-button">
+      <button
+        mat-flat-button
+        class="signin-button"
+        *ngIf="!isSignedIn"
+        (click)="signUporInUser()"
+      >
         Sign Up
         <mat-icon
           aria-hidden="false"
@@ -58,6 +66,9 @@
         mat-flat-button
         class="checkout-button"
         [routerLink]="['/checkout']"
+        [ngClass]="{
+          'disable-cart': cartModel.items.length == 0
+        }"
       >
         Continue to checkout
       </button>

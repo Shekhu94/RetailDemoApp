@@ -81,6 +81,7 @@
 
 .sizes {
     padding-top: 4%;
+    width: 95%;
 
     div {
         @include flex-container(row);
@@ -132,11 +133,6 @@
     }
 }
 
-.disable-cart {
-    pointer-events: none;
-    opacity: 0.5;
-    cursor: not-allowed;
-}
 
 .add-to-cart {
     background-color: black;

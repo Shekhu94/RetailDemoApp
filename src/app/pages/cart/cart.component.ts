@@ -14,6 +14,9 @@ import {
   GetCart,
 } from '../../store/cart/cart.action';
 import { RouterModule } from '@angular/router';
+import { ProfileStateModel } from '../../store/profile/profile.model';
+import { ProfileState } from '../../store/profile/profile.state';
+import { MsalloginService } from '../../shared/services/msallogin.service';
 
 @Component({
   selector: 'app-cart',
@@ -33,14 +36,20 @@ import { RouterModule } from '@angular/router';
 export class CartComponent {
   selectedQuantity!: string;
   cartSerivce = inject(CartService);
+  msalService = inject(MsalloginService);
   store = inject(Store);
   cartModel!: CartStateModel;
   cartItems: Cart[] = [];
   totalPrice: string = '';
   deliveryCharge = 149;
+  isSignedIn = false;
 
   cartDetails$: Observable<CartStateModel> = this.store.select(
     CartState.getCart
+  );
+
+  userProfileInfo$: Observable<ProfileStateModel> = this.store.select(
+    ProfileState.getProfileInfo
   );
 
   ngOnInit() {
@@ -49,6 +58,13 @@ export class CartComponent {
       this.cartModel = cart;
       this.totalPrice = cart.totalPrice;
     });
+    this.userProfileInfo$.subscribe((payload) => {
+      this.isSignedIn = payload.isSignedIn;
+    });
+  }
+
+  signUporInUser() {
+    this.msalService.loginPopup();
   }
 
   deleteFromCart(productId: string) {

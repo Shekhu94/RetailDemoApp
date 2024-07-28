@@ -51,6 +51,14 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 
+.disable-cart {
+    pointer-events: none;
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+
+
 .product-gallery__featured .owl-carousel .owl-item img {
     height: 40em; /* Set your desired height */
     object-fit: contain; /* Ensures the image covers the area while maintaining aspect ratio */

@@ -27,6 +27,7 @@ import { Store } from '@ngxs/store';
 import { environment } from '../environments/environment';
 import { AddProfile } from './store/profile/profile.action';
 import { ProfileStateModel } from './store/profile/profile.model';
+import { MsalloginService } from './shared/services/msallogin.service';
 
 type ProfileType = {
   displayName?: string;
@@ -62,7 +63,7 @@ export class AppComponent {
   public store = inject(Store);
 
   constructor(
-    @Inject(MSAL_GUARD_CONFIG) private msalGuardConfig: MsalGuardConfiguration,
+    private msalloginService: MsalloginService,
     private authService: MsalService,
     private msalBroadcastService: MsalBroadcastService,
     private http: HttpClient
@@ -139,39 +140,15 @@ export class AppComponent {
   }
 
   loginRedirect() {
-    if (this.msalGuardConfig.authRequest) {
-      this.authService.loginRedirect({
-        ...this.msalGuardConfig.authRequest,
-      } as RedirectRequest);
-    } else {
-      this.authService.loginRedirect();
-    }
+    this.msalloginService.loginRedirect();
   }
 
   loginPopup() {
-    if (this.msalGuardConfig.authRequest) {
-      this.authService
-        .loginPopup({ ...this.msalGuardConfig.authRequest } as PopupRequest)
-        .subscribe((response: AuthenticationResult) => {
-          this.authService.instance.setActiveAccount(response.account);
-        });
-    } else {
-      this.authService
-        .loginPopup()
-        .subscribe((response: AuthenticationResult) => {
-          this.authService.instance.setActiveAccount(response.account);
-        });
-    }
+    this.msalloginService.loginPopup();
   }
 
   logout(popup?: boolean) {
-    if (popup) {
-      this.authService.logoutPopup({
-        mainWindowRedirectUri: '/',
-      });
-    } else {
-      this.authService.logoutRedirect();
-    }
+    this.msalloginService.logout(popup);
   }
 
   ngOnDestroy(): void {
