@@ -17,7 +17,11 @@
     "variants": [
       {
         "id": "1",
-        "images": ["carousel/women_blue_1.jpg", "carousel/women_blue_2.jpg"],
+        "images": [
+          "carousel/women_blue_1.jpg",
+          "carousel/women_blue_2.jpg",
+          "carousel/women_size_chart.jpg"
+        ],
         "inventory_quantity": "5",
         "name": "Midnight 16inch MacBook Pro",
         "price": "1999.99",
@@ -46,7 +50,8 @@
         "images": [
           "carousel/women_black_1.jpg",
           "carousel/women_black_2.jpg",
-          "carousel/women_black_3.jpg"
+          "carousel/women_black_3.jpg",
+          "carousel/women_size_chart.jpg"
         ],
         "inventory_quantity": "5",
         "name": "Midnight 16inch MacBook Pro",
@@ -97,7 +102,11 @@
     "variants": [
       {
         "id": "3",
-        "images": ["carousel/men_blue_1.jpg", "carousel/men_blue_2.jpg"],
+        "images": [
+          "carousel/men_blue_1.jpg",
+          "carousel/men_blue_2.jpg",
+          "carousel/men_size_chart.jpg"
+        ],
         "inventory_quantity": "5",
         "name": "Midnight 16inch MacBook Pro",
         "price": "1999.99",
@@ -123,7 +132,11 @@
       },
       {
         "id": "4",
-        "images": ["carousel/men_olive_1.jpg", "carousel/men_olive_2.jpg"],
+        "images": [
+          "carousel/men_olive_1.jpg",
+          "carousel/men_olive_2.jpg",
+          "carousel/men_size_chart.jpg"
+        ],
         "inventory_quantity": "5",
         "name": "Midnight 16inch MacBook Pro",
         "options": [

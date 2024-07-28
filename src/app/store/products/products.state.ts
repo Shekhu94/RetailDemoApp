@@ -116,7 +116,11 @@ export class ProductListState {
       if (state.searchedText.length == 0) {
         return x;
       } else {
-        return x.description.match(searchTextRegex);
+        return (
+          x.description.match(searchTextRegex) ||
+          x.category.match(searchTextRegex) ||
+          x.name.match(searchTextRegex)
+        );
       }
     });
   }

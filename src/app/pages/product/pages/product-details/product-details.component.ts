@@ -109,8 +109,11 @@ export class ProductDetailsComponent {
   createViewModel() {
     const { care, description, material, price, strikedPrice, name } =
       this.productDetails || {};
-    this.priceObject.finalPrice = price;
-    this.priceObject.strikedPrice = strikedPrice;
+    this.priceObject = {
+      ...this.priceObject,
+      finalPrice: price,
+      strikedPrice: strikedPrice,
+    };
     this.productName = name;
     this.productAccordion = [];
     this.productAccordion.push({ key: 'Care', value: care });

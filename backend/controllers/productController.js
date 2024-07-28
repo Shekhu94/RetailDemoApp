@@ -1,6 +1,6 @@
 const fs = require("fs");
 exports.getAllProducts = (req, res) => {
-  fs.readFile("./mockedJsons/getProducts.json", "utf8", (err, data) => {
+  fs.readFile("./mockedJsons/products.json", "utf8", (err, data) => {
     if (err) {
       res.status(500).send("Error reading mock data");
       console.log(err);
@@ -12,7 +12,7 @@ exports.getAllProducts = (req, res) => {
 
 exports.getProductDetails = (req, res) => {
   let id = req.params.id;
-  fs.readFile("./mockedJsons/getProducts.json", "utf8", (err, data) => {
+  fs.readFile("./mockedJsons/products.json", "utf8", (err, data) => {
     if (err) {
       res.status(500).send("Error reading mock data");
       console.log(err);
