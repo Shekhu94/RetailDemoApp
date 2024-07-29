@@ -26,6 +26,13 @@ import { SearchCriteriaModel } from '../../../store/products/products.model';
 import { GetProductListonSearch } from '../../../store/products/products.action';
 import { CartState } from '../../../store/cart/cart.state';
 import { RouterLink } from '@angular/router';
+import {
+  animate,
+  keyframes,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
 
 @Component({
   selector: 'app-header',
@@ -49,6 +56,20 @@ import { RouterLink } from '@angular/router';
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
+  animations: [
+    trigger('blink', [
+      transition('* => true', [
+        animate(
+          '1s',
+          keyframes([
+            style({ opacity: 1 }),
+            style({ opacity: 0 }),
+            style({ opacity: 1 }),
+          ])
+        ),
+      ]),
+    ]),
+  ],
 })
 export class HeaderComponent {
   @Output() loginEvent = new EventEmitter<string>();
@@ -59,13 +80,14 @@ export class HeaderComponent {
   displayName: string | undefined = '';
   isSignedIn: boolean = false;
   search: String = '';
-  itemCount: Number = 0;
+  blinkState: boolean = false;
+  itemCount: number = 0;
   public store = inject(Store);
   userProfileInfo$: Observable<ProfileStateModel> = this.store.select(
     ProfileState.getProfileInfo
   );
 
-  itemsInCartCount$: Observable<Number> = this.store.select(
+  itemsInCartCount$: Observable<number> = this.store.select(
     CartState.getProductsInCartCount
   );
   searchControl!: FormControl;
@@ -84,6 +106,9 @@ export class HeaderComponent {
       });
     this.itemsInCartCount$.subscribe((x) => {
       this.itemCount = x;
+      if (this.itemCount > 0) {
+        this.startShake();
+      }
     });
   }
 
@@ -93,6 +118,12 @@ export class HeaderComponent {
       this.displayName = payload.displayName;
       this.isSignedIn = payload.isSignedIn;
     });
+  }
+  startShake() {
+    this.blinkState = true;
+    setTimeout(() => {
+      this.blinkState = false; // Reset the animation state
+    }, 500); // Adjust duration as needed
   }
 
   triggerLoginFlow(value: string) {

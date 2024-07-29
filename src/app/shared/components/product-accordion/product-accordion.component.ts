@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CdkAccordionModule } from '@angular/cdk/accordion';
 import { MatIconModule } from '@angular/material/icon';
 import { AccordionModel } from './product-accordion.model';
@@ -9,11 +9,8 @@ import { AccordionModel } from './product-accordion.model';
   templateUrl: './product-accordion.component.html',
   styleUrl: './product-accordion.component.scss',
 })
-export class ProductAccordionComponent implements AfterViewInit {
+export class ProductAccordionComponent {
   items = [];
   expandedIndex = 0;
   @Input() AccordionData: AccordionModel[] = [];
-  ngAfterViewInit() {
-    console.log(this.AccordionData);
-  }
 }
