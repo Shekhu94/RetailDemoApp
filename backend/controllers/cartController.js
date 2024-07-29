@@ -76,8 +76,10 @@ exports.deleteFromCart = (req, res) => {
       return;
     }
     let productId = req.params.id;
-    let cartData = JSON.parse(data).filter((x) => x.productId != productId);
+    let cartData = JSON.parse(data);
+    let removeItemIndex = cartData.findIndex((x) => x.productId == productId);
     let totalPrice = 0;
+    cartData.splice(removeItemIndex, 1);
     cartData = cartData.map((x) => {
       x.price.finalPrice = x.price?.finalPrice * x.quantity;
       totalPrice += x.price.finalPrice;
