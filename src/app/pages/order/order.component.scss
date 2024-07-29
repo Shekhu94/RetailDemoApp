@@ -21,9 +21,9 @@
 
 @media screen and (max-width: 600px) {
     .order-section {
-        width: 50%;
+        width: 70%;
         position: relative;
-        left: 20%;
+        left: 16%;
     }
 
     .account-heading{
@@ -39,6 +39,11 @@
         font-weight: 700;
         padding-bottom: 2%;
     }
-    
+
+    .order-section {
+        overflow-x: auto;
+      }
+      
+
     
 }

@@ -14,7 +14,7 @@ import { CurrencyPipe, DatePipe } from '@angular/common';
 })
 export class OrderComponent {
   displayedColumns: string[] = [
-    'Order',
+    'Order ID',
     'Date',
     'Payment',
     'Fulfillment',
