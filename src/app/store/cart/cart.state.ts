@@ -1,5 +1,5 @@
 import { State, Action, StateContext, Selector } from '@ngxs/store';
-import { Cart, CartStateModel } from './cart.model';
+import { CartStateModel } from './cart.model';
 import {
   ClearCartAfterSuccessfulOrder,
   DeleteSelectedProductFromCart,

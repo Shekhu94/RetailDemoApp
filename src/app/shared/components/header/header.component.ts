@@ -78,15 +78,18 @@ export class HeaderComponent {
 
   public sidenavMenuItems: Array<any> = [];
   displayName: string | undefined = '';
-  isSignedIn: boolean = false;
   search: String = '';
+  isSignedIn: boolean = false;
   blinkState: boolean = false;
   itemCount: number = 0;
   public store = inject(Store);
+
+  // this will select the user profile info from the state
   userProfileInfo$: Observable<ProfileStateModel> = this.store.select(
     ProfileState.getProfileInfo
   );
 
+  // this will select the total products inthe cart from the state
   itemsInCartCount$: Observable<number> = this.store.select(
     CartState.getProductsInCartCount
   );
@@ -119,6 +122,8 @@ export class HeaderComponent {
       this.isSignedIn = payload.isSignedIn;
     });
   }
+
+  //this method will provide shake animation to the cart icon if items are added or deleted from the cart
   startShake() {
     this.blinkState = true;
     setTimeout(() => {

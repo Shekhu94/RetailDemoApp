@@ -1,5 +1,4 @@
 import { Price } from '../../store/products/products.model';
-import { Cart } from './cart.model';
 export class SetSelectedProductInCart {
   static readonly type = '[ProductDetail page] SetSelectedProductInCart';
   constructor(

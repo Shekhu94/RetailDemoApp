@@ -148,6 +148,7 @@ export class ProductDetailsComponent {
     this.store.dispatch(new SetSelectedProductSize(size));
   }
 
+  // this should change the image of the caraousel
   changeimage(image: string) {
     this.selectedImage = image;
   }

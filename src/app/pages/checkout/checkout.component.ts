@@ -118,7 +118,6 @@ export class CheckoutComponent {
   }
 
   checkout() {
-    console.log(this.billingForm);
     this.checkoutService
       .createOrder(this.grandTotal)
       .subscribe((order: Order) => {
@@ -130,6 +129,7 @@ export class CheckoutComponent {
       });
   }
 
+  // this will trigger the razorpay model for payment and call the razorpay api on payment submission
   payNow() {
     this.RazorpayOptions.key = this.orderDetails.razorKey;
     this.RazorpayOptions.order_id = this.orderDetails.orderId;
@@ -149,7 +149,7 @@ export class CheckoutComponent {
     Razorpay.open(this.RazorpayOptions);
   }
 
-  paymentResponseHandler(paymentid: any) {
+  paymentResponseHandler() {
     this.store.dispatch(new ClearCartAfterSuccessfulOrder());
     this.router.navigate(['order'], { relativeTo: this.route });
   }

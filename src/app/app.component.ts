@@ -28,6 +28,7 @@ import { environment } from '../environments/environment';
 import { AddProfile } from './store/profile/profile.action';
 import { ProfileStateModel } from './store/profile/profile.model';
 import { MsalloginService } from './shared/services/msallogin.service';
+import { Meta, Title } from '@angular/platform-browser';
 
 type ProfileType = {
   displayName?: string;
@@ -66,12 +67,20 @@ export class AppComponent {
     private msalloginService: MsalloginService,
     private authService: MsalService,
     private msalBroadcastService: MsalBroadcastService,
-    private http: HttpClient
+    private http: HttpClient,
+    private meta: Meta,
+    private titleService: Title
   ) {}
 
   ngOnInit(): void {
-    this.authService.handleRedirectObservable().subscribe();
+    // to improve SEO, we are adding Tags
+    this.titleService.setTitle('yCompany -An Ecommerce solution for everyone');
+    this.meta.addTag({
+      name: 'keywords',
+      content: 'ecommerce, ycompany, sale, men, women, ladies, kids, dress',
+    });
 
+    this.authService.handleRedirectObservable().subscribe();
     this.setLoginDisplay();
 
     this.authService.instance.enableAccountStorageEvents(); // Optional - This will enable ACCOUNT_ADDED and ACCOUNT_REMOVED events emitted when a user logs in or out of another tab or window
@@ -115,8 +124,6 @@ export class AppComponent {
   checkAndSetActiveAccount() {
     /**
      * If no active account set but there are accounts signed in, sets first account to active account
-     * To use active account set here, subscribe to inProgress$ first in your component
-     * Note: Basic usage demonstrated. Your app may require more complicated account selection logic
      */
     let activeAccount = this.authService.instance.getActiveAccount();
 

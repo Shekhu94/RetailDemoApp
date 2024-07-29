@@ -63,6 +63,7 @@ export class CartComponent {
     });
   }
 
+  // this will trigger the login flow from cart page
   signUporInUser() {
     this.msalService.loginPopup();
   }
