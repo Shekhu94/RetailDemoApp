@@ -34,15 +34,20 @@ export class ProductListStateModel {
 export class ProductListState {
   constructor(private productListService: ProductService) {}
   //get the product list
-  @Action(GetProductList) addProfile(ctx: StateContext<ProductListStateModel>) {
+  @Action(GetProductList) addProfile(
+    ctx: StateContext<ProductListStateModel>,
+    action: GetProductList
+  ) {
     const state = ctx.getState();
-    this.productListService.getProductList().subscribe((payload) => {
-      ctx.setState({
-        ...state,
-        productList: payload,
-        filteredProductList: payload,
+    this.productListService
+      .getProductList(action.category)
+      .subscribe((payload) => {
+        ctx.setState({
+          ...state,
+          productList: payload,
+          filteredProductList: payload,
+        });
       });
-    });
   }
   // set the searched text
   @Action(GetProductListonSearch) getProductListonSearch(

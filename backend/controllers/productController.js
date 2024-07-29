@@ -6,7 +6,13 @@ exports.getAllProducts = (req, res) => {
       console.log(err);
       return;
     }
-    res.json(JSON.parse(data));
+    let productData = JSON.parse(data);
+    if (req.params.category && req.params.category != "") {
+      productData = productData.filter(
+        (x) => x.category.toUpperCase() == req.params.category.toUpperCase()
+      );
+    }
+    res.json(productData);
   });
 };
 

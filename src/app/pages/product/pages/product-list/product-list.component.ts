@@ -8,7 +8,7 @@ import { ProductListState } from '../../../../store/products/products.state';
 import { Observable } from 'rxjs';
 import { ProductListModel } from '../../../../store/products/products.model';
 import { AsyncPipe } from '@angular/common';
-import { Router, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-product-list',
@@ -26,13 +26,17 @@ import { Router, RouterOutlet } from '@angular/router';
 export class ProductListComponent implements OnInit {
   public store = inject(Store);
   private router = inject(Router);
+  private activatedRoute = inject(ActivatedRoute);
 
   productList$: Observable<ProductListModel[]> = this.store.select(
     ProductListState.getProductList
   );
 
   ngOnInit(): void {
-    this.store.dispatch(new GetProductList());
+    this.activatedRoute.url.subscribe((params) => {
+      let category = params[0] ? params[0].path : '';
+      this.store.dispatch(new GetProductList(category));
+    });
   }
 
   openDetailsPage(productid: string) {

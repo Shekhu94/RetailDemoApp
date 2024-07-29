@@ -9,20 +9,24 @@ import { Price, ProductListModel } from '../../store/products/products.model';
 export class ProductService {
   constructor(private httpClient: HttpClient) {}
 
-  getProductList(): Observable<ProductListModel[]> {
-    return this.httpClient.get('http://localhost:3000/api/products').pipe(
-      map((payload) => {
-        return payload as ProductListModel[];
-      })
-    );
+  getProductList(category?: string): Observable<ProductListModel[]> {
+    return this.httpClient
+      .get(`http://localhost:3000/api/products/${category}`)
+      .pipe(
+        map((payload) => {
+          return payload as ProductListModel[];
+        })
+      );
   }
 
   getProductDetails(id: string): Observable<ProductListModel[]> {
-    return this.httpClient.get(`http://localhost:3000/api/products/${id}`).pipe(
-      map((payload) => {
-        return payload as ProductListModel[];
-      })
-    );
+    return this.httpClient
+      .get(`http://localhost:3000/api/products/details/${id}`)
+      .pipe(
+        map((payload) => {
+          return payload as ProductListModel[];
+        })
+      );
   }
 
   addToCart(

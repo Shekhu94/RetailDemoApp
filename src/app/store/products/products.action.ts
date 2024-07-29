@@ -2,6 +2,7 @@ import { Option, SearchCriteriaModel } from './products.model';
 
 export class GetProductList {
   static readonly type = '[ProductList page] GetProduct';
+  constructor(public category: string) {}
 }
 
 export class GetProductListonSearch {

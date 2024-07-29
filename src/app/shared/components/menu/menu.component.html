@@ -1,8 +1,8 @@
 <mat-toolbar>
   <div class="app-menu">
     @for(option of menuOptions; track $index) {
-    <button mat-button (click)="showRelatedProducts(option)">
-      {{ option }}
+    <button mat-button routerLinkActive="active" [routerLink]="option">
+      {{ option | titlecase }}
     </button>
     }
   </div>
