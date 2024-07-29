@@ -67,7 +67,7 @@
         class="checkout-button"
         [routerLink]="['/checkout']"
         [ngClass]="{
-          'disable-cart': cartModel.items.length == 0
+          'disable-cart': cartModel.items.length == 0 || !isSignedIn
         }"
       >
         Continue to checkout

@@ -8,6 +8,7 @@ import {
 } from './cart.action';
 import { Injectable } from '@angular/core';
 import { CartService } from '../../pages/cart/cart.service';
+import { LoggingService } from '../../shared/services/logging.service';
 
 @State<CartStateModel>({
   name: 'cart',
@@ -18,7 +19,10 @@ import { CartService } from '../../pages/cart/cart.service';
 })
 @Injectable()
 export class CartState {
-  constructor(private cartService: CartService) {}
+  constructor(
+    private cartService: CartService,
+    private loggingService: LoggingService
+  ) {}
   // Actions will be defined here
   // set the selected prodcut in cart
   @Action(SetSelectedProductInCart) setSelectedProductInCart(
@@ -54,13 +58,18 @@ export class CartState {
   // get the selected product details
   @Action(GetCart) getCart(ctx: StateContext<CartStateModel>) {
     const state = ctx.getState();
-    this.cartService.getCart().subscribe((payload) => {
-      ctx.setState({
-        ...state,
-        ...payload,
-        totalPrice: payload.totalPrice,
-      });
-    });
+    this.cartService.getCart().subscribe(
+      (payload) => {
+        ctx.setState({
+          ...state,
+          ...payload,
+          totalPrice: payload.totalPrice,
+        });
+      },
+      (err) => {
+        this.loggingService.error('Error while making GET cart API call' + err);
+      }
+    );
   }
 
   @Action(DeleteSelectedProductFromCart) deleteSelectedProductFromCart(
@@ -68,20 +77,26 @@ export class CartState {
     action: DeleteSelectedProductFromCart
   ) {
     const state = ctx.getState();
-    this.cartService.DeleteProductFromCart(action.id).subscribe((payload) => {
-      ctx.setState({
-        ...state,
-        items: payload.items,
-        totalPrice: payload.totalPrice,
-      });
-    });
+    this.cartService.DeleteProductFromCart(action.id).subscribe(
+      (payload) => {
+        ctx.setState({
+          ...state,
+          items: payload.items,
+          totalPrice: payload.totalPrice,
+        });
+      },
+      (err) => {
+        this.loggingService.error(
+          'Error while deleting from cart API call' + err
+        );
+      }
+    );
   }
 
   @Action(ClearCartAfterSuccessfulOrder) clearCartAfterSuccessfulOrder(
     ctx: StateContext<CartStateModel>
   ) {
     window.sessionStorage.clear(); // clearing cart state from session
-    const state = ctx.getState();
     let initialState: CartStateModel = {
       items: [],
       totalPrice: '',

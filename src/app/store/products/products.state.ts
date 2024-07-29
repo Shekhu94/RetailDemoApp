@@ -9,6 +9,7 @@ import {
   GetProductListonSearch,
   SetSelectedProductSize,
 } from './products.action';
+import { LoggingService } from '../../shared/services/logging.service';
 
 export class ProductListStateModel {
   productList: ProductListModel[] = [];
@@ -32,22 +33,30 @@ export class ProductListStateModel {
 })
 @Injectable()
 export class ProductListState {
-  constructor(private productListService: ProductService) {}
+  constructor(
+    private productListService: ProductService,
+    private loggingService: LoggingService
+  ) {}
   //get the product list
   @Action(GetProductList) addProfile(
     ctx: StateContext<ProductListStateModel>,
     action: GetProductList
   ) {
     const state = ctx.getState();
-    this.productListService
-      .getProductList(action.category)
-      .subscribe((payload) => {
+    this.productListService.getProductList(action.category).subscribe(
+      (payload) => {
         ctx.setState({
           ...state,
           productList: payload,
           filteredProductList: payload,
         });
-      });
+      },
+      (err) => {
+        this.loggingService.error(
+          'Error while making GET productlist API call' + err
+        );
+      }
+    );
   }
   // set the searched text
   @Action(GetProductListonSearch) getProductListonSearch(
@@ -85,14 +94,19 @@ export class ProductListState {
     action: GetProductDetails
   ) {
     const state = ctx.getState();
-    this.productListService
-      .getProductDetails(action.id)
-      .subscribe((payload) => {
+    this.productListService.getProductDetails(action.id).subscribe(
+      (payload) => {
         ctx.setState({
           ...state,
           productDetails: payload,
         });
-      });
+      },
+      (err) => {
+        this.loggingService.error(
+          'Error while making GET productdetails API call' + err
+        );
+      }
+    );
   }
 
   // set the selected product details

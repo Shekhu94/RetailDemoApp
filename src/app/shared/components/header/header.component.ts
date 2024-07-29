@@ -15,7 +15,6 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { SidenavMenuComponent } from '../sidenav-menu/sidenav-menu.component';
 import { MenuComponent } from '../menu/menu.component';
 import { Store } from '@ngxs/store';
 import { debounceTime, distinctUntilChanged, Observable } from 'rxjs';
@@ -51,7 +50,6 @@ import {
     MatSidenavModule,
     MatMenuModule,
     MatBadgeModule,
-    SidenavMenuComponent,
     MenuComponent,
   ],
   templateUrl: './header.component.html',

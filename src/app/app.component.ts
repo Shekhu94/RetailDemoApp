@@ -29,6 +29,7 @@ import { AddProfile } from './store/profile/profile.action';
 import { ProfileStateModel } from './store/profile/profile.model';
 import { MsalloginService } from './shared/services/msallogin.service';
 import { Meta, Title } from '@angular/platform-browser';
+import { LoggingService } from './shared/services/logging.service';
 
 type ProfileType = {
   displayName?: string;
@@ -67,6 +68,7 @@ export class AppComponent {
     private msalloginService: MsalloginService,
     private authService: MsalService,
     private msalBroadcastService: MsalBroadcastService,
+    private loggingService: LoggingService,
     private http: HttpClient,
     private meta: Meta,
     private titleService: Title
@@ -142,6 +144,7 @@ export class AppComponent {
       let profileInfo = new ProfileStateModel();
       profileInfo.displayName = this.profile.displayName;
       profileInfo.isSignedIn = true;
+      this.loggingService.info('User logged In successfully!!');
       this.store.dispatch(new AddProfile(profileInfo));
     });
   }

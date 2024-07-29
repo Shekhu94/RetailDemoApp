@@ -40,6 +40,7 @@ import { NgxsStoragePluginModule, StorageOption } from '@ngxs/storage-plugin';
 import { ProfileState } from './store/profile/profile.state';
 import { ProductListState } from './store/products/products.state';
 import { CartState } from './store/cart/cart.state';
+import { HttperrorinterceptorService } from './shared/services/httperrorinterceptor.service';
 export function loggerCallback(logLevel: LogLevel, message: string) {
   console.log(message);
 }
@@ -114,6 +115,11 @@ export const appConfig: ApplicationConfig = {
     {
       provide: HTTP_INTERCEPTORS,
       useClass: MsalInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttperrorinterceptorService,
       multi: true,
     },
     {
