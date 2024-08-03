@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const productRoutes = require("./routes/productRoutes");
 const cartRoutes = require("./routes/cartRoutes");
 const orderRoutes = require("./routes/orderRoutes");
+const offersRoutes = require("./routes/offersRoutes");
 const app = express();
 const port = 3000;
 
@@ -19,6 +20,7 @@ app.use(bodyParser.json());
 app.use("/api/products", productRoutes);
 app.use("/api/cart", cartRoutes);
 app.use("/api/order", orderRoutes);
+app.use("/api/offers", offersRoutes);
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);

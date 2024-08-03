@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
+import { Offer } from './offer.model';
 
 @Component({
   selector: 'app-offer-carousel',
@@ -29,31 +30,5 @@ export class OfferCarouselComponent {
     nav: false,
   };
 
-  public slides = [
-    {
-      title: 'The biggest sale',
-      subtitle: 'Special for today',
-      image: 'carousel/banner1.jpg',
-    },
-    {
-      title: 'Summer collection',
-      subtitle: 'New Arrivals On Sale',
-      image: 'carousel/banner2.jpg',
-    },
-    {
-      title: 'The biggest sale',
-      subtitle: 'Special for today',
-      image: 'carousel/banner3.jpg',
-    },
-    {
-      title: 'Summer collection',
-      subtitle: 'New Arrivals On Sale',
-      image: 'carousel/banner4.jpg',
-    },
-    {
-      title: 'The biggest sale',
-      subtitle: 'Special for today',
-      image: 'carousel/banner5.jpg',
-    },
-  ];
+  @Input() slides: Offer[] = [];
 }

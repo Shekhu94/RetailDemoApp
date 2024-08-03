@@ -1,0 +1,32 @@
+[
+  {
+    "title": "The biggest sale",
+    "subtitle": "Special for today",
+    "image": "carousel/banner1.jpg",
+    "showOffer": true
+  },
+  {
+    "title": "Summer collection",
+    "subtitle": "New Arrivals On Sale",
+    "image": "carousel/banner2.jpg",
+    "showOffer": true
+  },
+  {
+    "title": "The biggest sale",
+    "subtitle": "Special for today",
+    "image": "carousel/banner3.jpg",
+    "showOffer": false
+  },
+  {
+    "title": "The biggest sale",
+    "subtitle": "Special for today",
+    "image": "carousel/banner4.jpg",
+    "showOffer": true
+  },
+  {
+    "title": "The biggest sale",
+    "subtitle": "Special for today",
+    "image": "carousel/banner5.jpg",
+    "showOffer": true
+  }
+]

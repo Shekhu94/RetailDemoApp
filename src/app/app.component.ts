@@ -76,7 +76,7 @@ export class AppComponent {
 
   ngOnInit(): void {
     // to improve SEO, we are adding Tags
-    this.titleService.setTitle('yCompany -An Ecommerce solution for everyone');
+    this.titleService.setTitle('yCompany -Apparels for everyone');
     this.meta.addTag({
       name: 'keywords',
       content: 'ecommerce, ycompany, sale, men, women, ladies, kids, dress',

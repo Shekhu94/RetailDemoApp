@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { Price, ProductListModel } from '../../store/products/products.model';
+import { Offer } from '../../shared/components/offer-carousel/offer.model';
 
 @Injectable({
   providedIn: 'root',
@@ -27,6 +28,15 @@ export class ProductService {
           return payload as ProductListModel[];
         })
       );
+  }
+
+  getOffersForCarousel(): Observable<Offer[]> {
+    return this.httpClient.get(`http://localhost:3000/api/offers`).pipe(
+      map((payload) => {
+        let data = payload as Offer[];
+        return data.filter((x) => x.showOffer);
+      })
+    );
   }
 
   addToCart(
