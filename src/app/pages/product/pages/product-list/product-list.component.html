@@ -8,7 +8,6 @@
   <div class="grid-row">
     @for (product of productList$ | async; track $index) {
     <div class="grid-item">
-      @if (product) {
       <div class="grid-item-wrapper">
         <div class="grid-item-container">
           <mat-card
@@ -25,9 +24,10 @@
           </mat-card>
         </div>
       </div>
-      }@else {
-      <div>There are no matching products, Please try other categories</div>
-      }
+    </div>
+    } @empty {
+    <div class="empty-message">
+      There are no matching products, Please try other categories
     </div>
     }
   </div>
