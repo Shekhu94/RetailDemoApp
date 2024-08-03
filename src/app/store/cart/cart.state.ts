@@ -58,18 +58,18 @@ export class CartState {
   // get the selected product details
   @Action(GetCart) getCart(ctx: StateContext<CartStateModel>) {
     const state = ctx.getState();
-    this.cartService.getCart().subscribe(
-      (payload) => {
+    this.cartService.getCart().subscribe({
+      next: (payload) => {
         ctx.setState({
           ...state,
           ...payload,
           totalPrice: payload.totalPrice,
         });
       },
-      (err) => {
+      error: (err) => {
         this.loggingService.error('Error while making GET cart API call' + err);
-      }
-    );
+      },
+    });
   }
 
   @Action(DeleteSelectedProductFromCart) deleteSelectedProductFromCart(
@@ -77,20 +77,20 @@ export class CartState {
     action: DeleteSelectedProductFromCart
   ) {
     const state = ctx.getState();
-    this.cartService.DeleteProductFromCart(action.id).subscribe(
-      (payload) => {
+    this.cartService.DeleteProductFromCart(action.id).subscribe({
+      next: (payload) => {
         ctx.setState({
           ...state,
           items: payload.items,
           totalPrice: payload.totalPrice,
         });
       },
-      (err) => {
+      error: (err) => {
         this.loggingService.error(
           'Error while deleting from cart API call' + err
         );
-      }
-    );
+      },
+    });
   }
 
   @Action(ClearCartAfterSuccessfulOrder) clearCartAfterSuccessfulOrder(

@@ -20,6 +20,11 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
+    path: 'kids',
+    component: ProductListComponent,
+    pathMatch: 'full',
+  },
+  {
     path: 'details/:id',
     component: ProductDetailsComponent,
     pathMatch: 'full',

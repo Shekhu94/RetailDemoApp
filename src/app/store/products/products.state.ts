@@ -43,20 +43,20 @@ export class ProductListState {
     action: GetProductList
   ) {
     const state = ctx.getState();
-    this.productListService.getProductList(action.category).subscribe(
-      (payload) => {
+    this.productListService.getProductList(action.category).subscribe({
+      next: (payload) => {
         ctx.setState({
           ...state,
           productList: payload,
           filteredProductList: payload,
         });
       },
-      (err) => {
+      error: (err) => {
         this.loggingService.error(
           'Error while making GET productlist API call' + err
         );
-      }
-    );
+      },
+    });
   }
   // set the searched text
   @Action(GetProductListonSearch) getProductListonSearch(
@@ -94,19 +94,19 @@ export class ProductListState {
     action: GetProductDetails
   ) {
     const state = ctx.getState();
-    this.productListService.getProductDetails(action.id).subscribe(
-      (payload) => {
+    this.productListService.getProductDetails(action.id).subscribe({
+      next: (payload) => {
         ctx.setState({
           ...state,
           productDetails: payload,
         });
       },
-      (err) => {
+      error: (err) => {
         this.loggingService.error(
           'Error while making GET productdetails API call' + err
         );
-      }
-    );
+      },
+    });
   }
 
   // set the selected product details
