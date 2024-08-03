@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { Offer } from './offer.model';
+import { off } from 'process';
 
 @Component({
   selector: 'app-offer-carousel',
@@ -31,4 +32,12 @@ export class OfferCarouselComponent {
   };
 
   @Input() slides: Offer[] = [];
+
+  trackById(index: number, offer: Offer) {
+    return offer.id;
+  }
+
+  displayProducts(slide: Offer) {
+    console.log(slide);
+  }
 }

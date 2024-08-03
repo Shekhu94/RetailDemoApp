@@ -1,8 +1,12 @@
 
 
+.carousel {
+    cursor: pointer;
+}  
 
 @media (min-width: 1280px) {
-    .carousel-height {
+    .carousel {
         height: 500px;
+        cursor: pointer;
     }    
 }
