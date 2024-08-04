@@ -10,3 +10,11 @@
         cursor: pointer;
     }    
 }
+
+@media (max-width: 545px) {
+    .carousel {
+        height: 300px;
+        cursor: pointer;
+        object-fit: fill;
+    }    
+}

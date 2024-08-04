@@ -101,8 +101,7 @@ export class HeaderComponent {
         distinctUntilChanged() // Only emit if the value has changed
       )
       .subscribe((searchValue) => {
-        console.log('Search term:', searchValue);
-        this.searchedValue.searchedText = searchValue;
+        this.searchedValue.searchedText = searchValue || '';
         this.store.dispatch(new GetProductListonSearch(this.searchedValue));
       });
     this.itemsInCartCount$.subscribe((x) => {
@@ -127,6 +126,10 @@ export class HeaderComponent {
     setTimeout(() => {
       this.blinkState = false; // Reset the animation state
     }, 500); // Adjust duration as needed
+  }
+
+  clearSearch() {
+    this.searchControl.reset();
   }
 
   triggerLoginFlow(value: string) {

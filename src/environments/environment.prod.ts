@@ -1,5 +1,6 @@
 export const environment = {
   production: true,
+  url: '',
   msalConfig: {
     auth: {
       clientId: 'd055db03-6c99-40b3-bb8d-37f7c21c79b8',

@@ -12,12 +12,14 @@
             class="search-text"
             [formControl]="searchControl"
           />
+
           <button
             mat-mini-fab
             type="button"
-            class="search-btn mat-elevation-z0"
+            class="close-btn mat-elevation-z0"
+            (click)="clearSearch()"
           >
-            <mat-icon>search</mat-icon>
+            <mat-icon>close</mat-icon>
           </button>
         </form>
       </div>

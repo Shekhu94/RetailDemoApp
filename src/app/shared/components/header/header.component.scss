@@ -1,5 +1,10 @@
 @import "../../../styles/mixins";
 
+
+.cart-icon mat-icon {
+    color: white !important;
+}
+
 .logo-toolbar {
     justify-content: space-between;
 }
@@ -33,11 +38,12 @@
         border-left: 1px solid #ccc;
     }
 
-    .search-btn {
+    
+    .close-btn {
         margin-left: -20px;
         background: #fff !important;
         box-shadow: none !important;
-        color: black;
+        color: black !important;
         border-radius: 25px;
     }
 }
@@ -90,9 +96,6 @@
     color: white;
 }
 
-mat-icon {
-    color: white !important;
-}
 
 @media screen and (min-width: 960px) {
     .sidenav-toggle {
