@@ -2,12 +2,13 @@ export const environment = {
   production: true,
   msalConfig: {
     auth: {
-      clientId: 'ENTER_CLIENT_ID',
-      authority: 'ENTER_AUTHORITY',
+      clientId: 'd055db03-6c99-40b3-bb8d-37f7c21c79b8',
+      authority: 'https://login.microsoftonline.com/common',
+      redirectUri: 'http://localhost:4200',
     },
   },
   apiConfig: {
-    scopes: ['ENTER_SCOPE'],
-    uri: 'ENTER_URI',
+    scopes: ['openid'],
+    uri: 'https://graph.microsoft.com/v1.0/me',
   },
 };

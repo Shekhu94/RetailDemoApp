@@ -133,6 +133,17 @@
   width: 100%;
 }
 
+mat-card {
+  background-color: white;
+  color: black
+}
+
+mat-card-content p {
+  text-align: center;
+  font-weight: 400;
+}
+
+
 
 @media(max-width: 1333px) {
   .grid-item {
@@ -172,16 +183,6 @@
     height: 394px;
     object-fit: cover;
   }
-}
-
-mat-card {
-  background-color: white;
-  color: black
-}
-
-mat-card-content p {
-  text-align: center;
-  font-weight: 400;
 }
 
 .line {
