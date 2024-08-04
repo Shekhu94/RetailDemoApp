@@ -31,7 +31,7 @@ exports.getOrderId = (req, res, next) => {
       clearCart();
 
       fs.writeFile(
-        "./mockedJsons/order.json",
+        "./backend/mockedJsons/order.json",
         JSON.stringify([orderJson]),
         "utf8",
         (err) => {
@@ -47,7 +47,7 @@ exports.getOrderId = (req, res, next) => {
 };
 
 exports.getOrderDetails = (req, res, next) => {
-  fs.readFile("./mockedJsons/order.json", "utf8", (err, data) => {
+  fs.readFile("./backend/mockedJsons/order.json", "utf8", (err, data) => {
     if (err) {
       res.status(500).send("Error reading mock data");
       console.log(err);
@@ -58,9 +58,14 @@ exports.getOrderDetails = (req, res, next) => {
 };
 
 clearCart = () => {
-  fs.writeFile("./mockedJsons/cart.json", JSON.stringify({}), "utf8", (err) => {
-    if (err) {
-      console.error(err);
+  fs.writeFile(
+    "./backend/mockedJsons/cart.json",
+    JSON.stringify({}),
+    "utf8",
+    (err) => {
+      if (err) {
+        console.error(err);
+      }
     }
-  });
+  );
 };

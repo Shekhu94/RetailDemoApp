@@ -1,6 +1,6 @@
 const fs = require("fs");
 exports.getCart = (req, res) => {
-  fs.readFile("./mockedJsons/cart.json", "utf8", (err, data) => {
+  fs.readFile("./backend/mockedJsons/cart.json", "utf8", (err, data) => {
     if (err) {
       res.status(500).send("Error reading mock data");
       console.log(err);
@@ -36,7 +36,7 @@ exports.addToCart = (req, res) => {
     productName: requestBody.productName,
   };
 
-  fs.readFile("./mockedJsons/cart.json", "utf8", (err, data) => {
+  fs.readFile("./backend/mockedJsons/cart.json", "utf8", (err, data) => {
     let cartArr = [];
     if (err) {
       console.error(err);
@@ -55,21 +55,26 @@ exports.addToCart = (req, res) => {
         : JSON.stringify([newData], null, 2);
 
     // Write the updated JSON back to the file
-    fs.writeFile("./mockedJsons/cart.json", updatedJson, "utf8", (err) => {
-      if (err) {
-        console.error(err);
-        return;
+    fs.writeFile(
+      "./backend/mockedJsons/cart.json",
+      updatedJson,
+      "utf8",
+      (err) => {
+        if (err) {
+          console.error(err);
+          return;
+        }
+        res.status(200).json({
+          success: true,
+          message: "Request was successful!",
+        });
       }
-      res.status(200).json({
-        success: true,
-        message: "Request was successful!",
-      });
-    });
+    );
   });
 };
 
 exports.deleteFromCart = (req, res) => {
-  fs.readFile("./mockedJsons/cart.json", "utf8", (err, data) => {
+  fs.readFile("./backend/mockedJsons/cart.json", "utf8", (err, data) => {
     if (err) {
       res.status(500).send("Error reading mock data");
       console.log(err);
@@ -90,18 +95,23 @@ exports.deleteFromCart = (req, res) => {
     const updatedJson = JSON.stringify([...cartData], null, 2);
 
     // Write the updated JSON back to the file
-    fs.writeFile("./mockedJsons/cart.json", updatedJson, "utf8", (err) => {
-      if (err) {
-        console.error(err);
-        return;
-      }
+    fs.writeFile(
+      "./backend/mockedJsons/cart.json",
+      updatedJson,
+      "utf8",
+      (err) => {
+        if (err) {
+          console.error(err);
+          return;
+        }
 
-      res.status(200).json({
-        success: true,
-        message: "Request was successful!",
-        items: cartData,
-        totalPrice,
-      });
-    });
+        res.status(200).json({
+          success: true,
+          message: "Request was successful!",
+          items: cartData,
+          totalPrice,
+        });
+      }
+    );
   });
 };
