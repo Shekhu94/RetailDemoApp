@@ -30,6 +30,7 @@ import { ProfileStateModel } from './store/profile/profile.model';
 import { MsalloginService } from './shared/services/msallogin.service';
 import { Meta, Title } from '@angular/platform-browser';
 import { LoggingService } from './shared/services/logging.service';
+import { FooterComponent } from './shared/components/footer/footer.component';
 
 type ProfileType = {
   displayName?: string;
@@ -51,6 +52,7 @@ type ProfileType = {
     MatButtonModule,
     MatMenuModule,
     HeaderComponent,
+    FooterComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
