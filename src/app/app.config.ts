@@ -95,7 +95,6 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideClientHydration(),
-    provideNoopAnimations(),
     // MSAL based DI configurations
     provideHttpClient(withInterceptorsFromDi(), withFetch()),
     importProvidersFrom(
