@@ -2,19 +2,12 @@ import { CommonModule } from '@angular/common';
 import { Component, Inject, inject } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import {
-  MSAL_GUARD_CONFIG,
   MsalBroadcastService,
-  MsalGuardConfiguration,
   MsalModule,
   MsalService,
 } from '@azure/msal-angular';
 import {
-  AuthenticationResult,
-  InteractionStatus,
-  PopupRequest,
-  RedirectRequest,
-  EventMessage,
-  EventType,
+  InteractionStatus
 } from '@azure/msal-browser';
 
 import { MatMenuModule } from '@angular/material/menu';

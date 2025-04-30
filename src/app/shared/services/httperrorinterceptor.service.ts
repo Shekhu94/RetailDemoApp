@@ -12,27 +12,25 @@ import { LoggingService } from './logging.service';
 @Injectable()
 export class HttperrorinterceptorService implements HttpInterceptor {
   private loggingService = inject(LoggingService);
+
   intercept(request: HttpRequest<any>, next: HttpHandler) {
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
-        let errorCode = 0;
-        switch (error.status) {
-          case 400:
-            errorCode = 400;
-            break;
-          case 401:
-            errorCode = 400;
-            break;
-          case 500:
-            errorCode = 500;
-            break;
-          default:
-            errorCode = 0;
-        }
-        this.loggingService.error('Http error occurred!!' + errorCode);
-        return throwError(
-          () => new Error('Http error occurred with error code ' + errorCode)
+        // Log detailed error information
+        this.loggingService.error(
+          `HTTP Error: ${error.status} - ${error.message || 'Unknown error'}`
         );
+
+        let userFriendlyMessage = 'An unexpected error occurred.';
+        if (error.status === 400) {
+          userFriendlyMessage = 'Bad Request. Please check your input.';
+        } else if (error.status === 401) {
+          userFriendlyMessage = 'Unauthorized. Please log in.';
+        } else if (error.status === 500) {
+          userFriendlyMessage = 'Server error. Please try again later.';
+        }
+
+        return throwError(() => new Error(userFriendlyMessage));
       })
     );
   }
