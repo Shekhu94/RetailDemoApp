@@ -55,7 +55,7 @@ export class CheckoutComponent {
   years: string[] = [];
   deliveryMethods: { value: string; name: string; desc: string }[] = [];
   grandTotal = 0;
-  orderDetails: Order = { orderId: '', createdAt: '', razorKey: '' };
+  orderDetails: Order = { orderId: '', createdAt: '', key: '' };
   formBuilder = inject(FormBuilder);
   staticDataService = inject(StaticdataService);
   store = inject(Store);
@@ -124,14 +124,14 @@ export class CheckoutComponent {
         console.log(order);
         this.orderDetails.createdAt = order.createdAt;
         this.orderDetails.orderId = order.orderId;
-        this.orderDetails.razorKey = order.razorKey;
+        this.orderDetails.key = order.key;
         this.payNow();
       });
   }
 
   // this will trigger the razorpay model for payment and call the razorpay api on payment submission
   payNow() {
-    this.RazorpayOptions.key = this.orderDetails.razorKey;
+    this.RazorpayOptions.key = this.orderDetails.key;
     this.RazorpayOptions.order_id = this.orderDetails.orderId;
     this.RazorpayOptions.amount = this.grandTotal;
     this.RazorpayOptions.name =

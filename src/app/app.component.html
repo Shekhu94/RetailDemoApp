@@ -1,5 +1,10 @@
-<app-header (loginEvent)="loginPopup()" (logoutEvent)="logout()"></app-header>
 
-<router-outlet />
-
-<app-footer></app-footer>
+<div class="layout-container">
+    <app-header (loginEvent)="loginPopup()" (logoutEvent)="logout()"></app-header>
+  
+    <div class="main-content">
+      <router-outlet></router-outlet>
+    </div>
+  
+    <app-footer></app-footer>
+  </div>
